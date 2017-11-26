@@ -22,10 +22,12 @@
 console.log('Initialise services');
 var baseURL = '';
 
-if (window.location.toString().startsWith('http://localhost:9000')) {
-	baseURL = 'http://localhost:8000'
-	console.log('INFO: Using hard coded dev server at: ' + baseURL)
+/*
+if (window.location.href.includes('localhost:9000')) {
+	baseURL = 'http://localhost:8000';
+	console.log('INFO: Using hard coded dev server at: ' + baseURL);
 }
+*/
 
 /**
  * @ngdoc function
@@ -35,7 +37,7 @@ if (window.location.toString().startsWith('http://localhost:9000')) {
  * Controller of the htmlApp
  */
 angular.module('htmlApp')
-	.factory('MainFactory', ['$http', '$q', function ($http, $q) {
+	.factory('MainFactory', ['$http', function ($http) {
 		var MainFactory = {};
 		MainFactory.getStatus = function () {
 			return $http.get(baseURL + '/v1/twin/status');

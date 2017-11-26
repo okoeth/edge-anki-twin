@@ -76,13 +76,13 @@ angular.module('htmlApp')
 		$scope.requestPing = function () {
 			console.log('INFO: Handling requestPing');
 			var command = {
-				command: "ping",
-				source: "ui"
+				command: 'ping',
+				source: 'ui'
 			};
 			MainFactory.postCommand(command)
 				.then(
 				function (response) { // ok
-					console.log('INFO: Ping command submitted to server');
+					console.log('INFO: Ping command submitted to server: '+response.statusText);
 				},
 				function (response) { // nok
 					console.error('ERROR: Request failed: ' + response.statusText);
@@ -91,7 +91,7 @@ angular.module('htmlApp')
 		};
 
 		// Initialise
-		$scope.lastUpdate = 'No update yet'
+		$scope.lastUpdate = 'No update yet';
 		$scope.poll = false;
 		$scope.text = 'Start polling';
 		$scope.status = {};

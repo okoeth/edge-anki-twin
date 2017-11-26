@@ -24,5 +24,25 @@ if [ x = x$DOCKER_USER ]; then
 	exit 1
 fi
 
+# Build Frontend
+cd html
+grunt
+if [ $? -ne 0 ]; then
+    echo "ERROR building fronted"
+    exit 1
+fi
+cd .. 
+
+# Build Backend
 docker build -t $DOCKER_USER/edge-anki-twin .
+if [ $? -ne 0 ]; then
+    echo "ERROR building backend"
+    exit 1
+fi
+
+# Push image
 docker push $DOCKER_USER/edge-anki-twin
+if [ $? -ne 0 ]; then
+    echo "ERROR pushing image"
+    exit 1
+fi
