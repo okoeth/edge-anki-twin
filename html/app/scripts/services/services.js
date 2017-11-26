@@ -19,15 +19,22 @@
 
 'use strict';
 
-console.log('Initialise services');
+console.log('Initialise services at: '+window.location.href);
 var baseURL = '';
 
-/*
-if (window.location.href.includes('localhost:9000')) {
+function startsWithCharAt(string, pattern) {
+    for (var i = 0, length = pattern.length; i < length; i += 1) {
+      if (pattern.charAt(i) !== string.charAt(i)) {
+		  return false;
+	  }
+    }
+    return true;
+}
+
+if (startsWithCharAt(window.location.href, 'http://localhost:9000')) {
 	baseURL = 'http://localhost:8000';
 	console.log('INFO: Using hard coded dev server at: ' + baseURL);
 }
-*/
 
 /**
  * @ngdoc function
