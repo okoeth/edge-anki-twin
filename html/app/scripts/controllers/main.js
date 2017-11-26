@@ -77,12 +77,193 @@ angular.module('htmlApp')
 			console.log('INFO: Handling requestPing');
 			var command = {
 				command: 'ping',
+				carId: '1',
 				source: 'ui'
 			};
 			MainFactory.postCommand(command)
 				.then(
 				function (response) { // ok
 					console.log('INFO: Ping command submitted to server: '+response.statusText);
+				},
+				function (response) { // nok
+					console.error('ERROR: Request failed: ' + response.statusText);
+				}
+				);
+		};
+
+		// Handler function for version of the car
+		$scope.requestVersion = function () {
+			console.log('INFO: Handling requestVersion');
+			var command = {
+				command: 'ver',
+				carId: '1',
+				source: 'ui'
+			};
+			MainFactory.postCommand(command)
+				.then(
+				function (response) { // ok
+					console.log('INFO: Version command submitted to server: '+response.statusText);
+				},
+				function (response) { // nok
+					console.error('ERROR: Request failed: ' + response.statusText);
+				}
+				);
+		};
+
+		// Handler function for changeSpeedUp of the car (250-1000)
+		$scope.changeSpeedUp = function () {
+			console.log('INFO: Handling changeSpeedUp');
+			var command = {
+				command: 's',
+				param1: '750',
+				carId: '1',
+				source: 'ui'
+			};
+			MainFactory.postCommand(command)
+				.then(
+				function (response) { // ok
+					console.log('INFO: SpeedUp command submitted to server: '+response.statusText);
+				},
+				function (response) { // nok
+					console.error('ERROR: Request failed: ' + response.statusText);
+				}
+				);
+		};
+
+		// Handler function for changeSpeedDown of the car (250-1000)
+		$scope.changeSpeedDown = function () {
+			console.log('INFO: Handling changeSpeedDown');
+			var command = {
+				command: 's',
+				param1: '250',
+				carId: '1',
+				source: 'ui'
+			};
+			MainFactory.postCommand(command)
+				.then(
+				function (response) { // ok
+					console.log('INFO: SpeedDown command submitted to server: '+response.statusText);
+				},
+				function (response) { // nok
+					console.error('ERROR: Request failed: ' + response.statusText);
+				}
+				);
+		};
+
+		// Handler function for changeSpeedStop of the car (250-1000)
+		$scope.changeSpeedStop = function () {
+			console.log('INFO: Handling changeSpeedStop');
+			var command = {
+				command: 'e',
+				carId: '1',
+				source: 'ui'
+			};
+			MainFactory.postCommand(command)
+				.then(
+				function (response) { // ok
+					console.log('INFO: SpeedStop command submitted to server: '+response.statusText);
+				},
+				function (response) { // nok
+					console.error('ERROR: Request failed: ' + response.statusText);
+				}
+				);
+		};
+
+		// Handler function for changeLaneLeft with the car (-68-+68)
+		$scope.changeLaneLeft = function () {
+			console.log('INFO: Handling changeLaneLeft');
+			var command = {
+				command: 'c',
+				param1: '-68',
+				carId: '1',
+				source: 'ui'
+			};
+			MainFactory.postCommand(command)
+				.then(
+				function (response) { // ok
+					console.log('INFO: changeLaneLeft command submitted to server: '+response.statusText);
+				},
+				function (response) { // nok
+					console.error('ERROR: Request failed: ' + response.statusText);
+				}
+				);
+		};
+
+		// Handler function for changeLaneRight with the car (-68-+68)
+		$scope.changeLaneRight = function () {
+			console.log('INFO: Handling changeLaneRight');
+			var command = {
+				command: 'c',
+				param1: '68',
+				carId: '1',
+				source: 'ui'
+			};
+			MainFactory.postCommand(command)
+				.then(
+				function (response) { // ok
+					console.log('INFO: changeLaneRight command submitted to server: '+response.statusText);
+				},
+				function (response) { // nok
+					console.error('ERROR: Request failed: ' + response.statusText);
+				}
+				);
+		};
+
+		// Handler function for showInitialise
+		$scope.showInitialise = function () {
+			console.log('INFO: Handling showInitialise');
+		};
+
+		// Handler function for changeLight
+		$scope.changeLight = function () {
+			console.log('INFO: Handling changeLight');
+			var command = {
+				command: 'l',
+				carId: '1',
+				source: 'ui'
+			};
+			MainFactory.postCommand(command)
+				.then(
+				function (response) { // ok
+					console.log('INFO: changeLight command submitted to server: '+response.statusText);
+				},
+				function (response) { // nok
+					console.error('ERROR: Request failed: ' + response.statusText);
+				}
+				);
+		};
+
+		// Handler function for changeLightPattern
+		$scope.changeLightPattern = function () {
+			console.log('INFO: Handling changeLightPattern');
+			var command = {
+				command: 'lp',
+				carId: '1',
+				source: 'ui'
+			};
+			MainFactory.postCommand(command)
+				.then(
+				function (response) { // ok
+					console.log('INFO: changeLightPattern command submitted to server: '+response.statusText);
+				},
+				function (response) { // nok
+					console.error('ERROR: Request failed: ' + response.statusText);
+				}
+				);
+		};
+
+		// Handler function for requestLevel
+		$scope.requestLevel = function () {
+			console.log('INFO: Handling requestLevel');
+			var command = {
+				command: 'bat',
+				carId: '1',
+				source: 'ui'
+			};
+			MainFactory.postCommand(command)
+				.then(
+				function (response) { // ok
+					console.log('INFO: requestLevel command submitted to server: '+response.statusText);
 				},
 				function (response) { // nok
 					console.error('ERROR: Request failed: ' + response.statusText);

@@ -25,12 +25,12 @@ type (
 	// Command represents a valid command with can be sent to the Anki Overdrive controller
 	Command struct {
 		Command string  `json:"command"`
-		CarID   string  `json:"car_id"`
-		Param1  string  `json:"param_1"`
-		Param2  string  `json:"param_2"`
-		Param3  int     `json:"param_3"`
-		Param4  int     `json:"param_4"`
-		Param5  float32 `json:"param_5"`
+		CarID   string  `json:"carId"`
+		Param1  string  `json:"param1"`
+		Param2  string  `json:"param2"`
+		Param3  int     `json:"param3"`
+		Param4  int     `json:"param4"`
+		Param5  float32 `json:"param5"`
 		Source  string  `json:"source"`
 	}
 )
@@ -40,6 +40,20 @@ type (
 func (c *Command) ControllerString() (string, error) {
 	if c.Command == "ping" {
 		return "ping", nil
+	} else if c.Command == "s" {
+		return "s " + c.Param1, nil
+	} else if c.Command == "e" {
+		return "e", nil
+	} else if c.Command == "c" {
+		return "c " + c.Param1, nil
+	} else if c.Command == "ver" {
+		return "ver", nil
+	} else if c.Command == "l" {
+		return "l", nil
+	} else if c.Command == "lp" {
+		return "lp", nil
+	} else if c.Command == "bat" {
+		return "bat", nil
 	}
 	return "", errors.New("Unknown Anki Overdrive controller command")
 }
