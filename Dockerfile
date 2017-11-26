@@ -19,9 +19,9 @@
 
 FROM golang:1.9
 USER 1001
-WORKDIR /go/src/mwc-twin
-COPY . /go/src/mwc-twin
+WORKDIR /go/src/edge-anki-twin
+COPY . /go/src/edge-anki-twin
 RUN go test 
 RUN go install 
 EXPOSE 8000
-ENTRYPOINT [ "/go/bin/mwc-twin"]
+ENTRYPOINT [ "/go/bin/edge-anki-twin"]

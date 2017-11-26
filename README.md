@@ -12,13 +12,13 @@ go run *.go
 ## Building and publishing the docker image
 To build and publish the Docker image run:
 ```
-./build.sh <docker-hub-user>
+./build.sh
 ```
 Note: This assumes that you are logged into the docker registry. Currently only the public Docker Hub is used. So makesure you are logged in via `docker login`.
 
-## Running it in Docker compose
+## Running it in Docker Compose
 See...
-TODO: Add ref to `mwc-docker` project
+TODO: Add ref to `edge-docker` project
 
 ## References
 [Introduction of Sarama](https://medium.com/@Oskarr3/implementing-cqrs-using-kafka-and-sarama-library-in-golang-da7efa3b77fe)
