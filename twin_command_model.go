@@ -25,7 +25,7 @@ type (
 	// Command represents a valid command with can be sent to the Anki Overdrive controller
 	Command struct {
 		Command string  `json:"command"`
-		CarID   string  `json:"carId"`
+		CarNo   string  `json:"carNo"`
 		Param1  string  `json:"param1"`
 		Param2  string  `json:"param2"`
 		Param3  int     `json:"param3"`

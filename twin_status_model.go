@@ -28,6 +28,7 @@ type (
 	Status struct {
 		StatusID      string  `json:"status_id"`
 		StatusName    string  `json:"status_name"`
+		CarNo         string  `json:"car_no"`
 		CarID         string  `json:"car_id"`
 		Version       int     `json:"version"`
 		Level         int     `json:"level"`

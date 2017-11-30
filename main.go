@@ -37,7 +37,7 @@ import (
 var MainLogger = log.New(os.Stdout, "MWC-TWIN: ", log.Lshortfile|log.LstdFlags)
 
 // TheStatus carries the latest status information
-var TheStatus = Status{}
+var TheStatus = [3]Status{}
 
 // TheProducer provides a reference to the Kafka producer
 var TheProducer sarama.AsyncProducer
@@ -50,6 +50,11 @@ func init() {
 }
 
 func main() {
+	// Initialise Cars
+	TheStatus[0].CarNo = "1"
+	TheStatus[1].CarNo = "2"
+	TheStatus[2].CarNo = "3"
+
 	// Set-up Kafka
 	kafkaServer := os.Getenv("KAFKA_SERVER")
 	if kafkaServer == "" {

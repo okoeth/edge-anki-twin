@@ -73,11 +73,11 @@ angular.module('htmlApp')
 		};
 
 		// Handler function for pinging the car
-		$scope.requestPing = function () {
-			console.log('INFO: Handling requestPing');
+		$scope.requestPing = function (carNo) {			
+			console.log('INFO: Handling requestPing for carno '+carNo);
 			var command = {
 				command: 'ping',
-				carId: '1',
+				carNo: carNo,
 				source: 'ui'
 			};
 			MainFactory.postCommand(command)
@@ -92,11 +92,11 @@ angular.module('htmlApp')
 		};
 
 		// Handler function for version of the car
-		$scope.requestVersion = function () {
-			console.log('INFO: Handling requestVersion');
+		$scope.requestVersion = function (carNo) {
+			console.log('INFO: Handling requestVersion for carno '+carNo);
 			var command = {
 				command: 'ver',
-				carId: '1',
+				carNo: carNo,
 				source: 'ui'
 			};
 			MainFactory.postCommand(command)
@@ -111,12 +111,12 @@ angular.module('htmlApp')
 		};
 
 		// Handler function for changeSpeedUp of the car (250-1000)
-		$scope.changeSpeedUp = function () {
-			console.log('INFO: Handling changeSpeedUp');
+		$scope.changeSpeedUp = function (carNo) {
+			console.log('INFO: Handling changeSpeedUp for carno '+carNo);
 			var command = {
 				command: 's',
 				param1: '750',
-				carId: '1',
+				carNo: carNo,
 				source: 'ui'
 			};
 			MainFactory.postCommand(command)
@@ -131,12 +131,12 @@ angular.module('htmlApp')
 		};
 
 		// Handler function for changeSpeedDown of the car (250-1000)
-		$scope.changeSpeedDown = function () {
-			console.log('INFO: Handling changeSpeedDown');
+		$scope.changeSpeedDown = function (carNo) {
+			console.log('INFO: Handling changeSpeedDown for carno '+carNo);
 			var command = {
 				command: 's',
 				param1: '250',
-				carId: '1',
+				carNo: carNo,
 				source: 'ui'
 			};
 			MainFactory.postCommand(command)
@@ -151,11 +151,11 @@ angular.module('htmlApp')
 		};
 
 		// Handler function for changeSpeedStop of the car (250-1000)
-		$scope.changeSpeedStop = function () {
-			console.log('INFO: Handling changeSpeedStop');
+		$scope.changeSpeedStop = function (carNo) {
+			console.log('INFO: Handling changeSpeedStop for carno '+carNo);
 			var command = {
 				command: 'e',
-				carId: '1',
+				carNo: carNo,
 				source: 'ui'
 			};
 			MainFactory.postCommand(command)
@@ -170,12 +170,12 @@ angular.module('htmlApp')
 		};
 
 		// Handler function for changeLaneLeft with the car (-68-+68)
-		$scope.changeLaneLeft = function () {
-			console.log('INFO: Handling changeLaneLeft');
+		$scope.changeLaneLeft = function (carNo) {
+			console.log('INFO: Handling changeLaneLeft for carno '+carNo);
 			var command = {
 				command: 'c',
 				param1: '-68',
-				carId: '1',
+				carNo: carNo,
 				source: 'ui'
 			};
 			MainFactory.postCommand(command)
@@ -190,12 +190,12 @@ angular.module('htmlApp')
 		};
 
 		// Handler function for changeLaneRight with the car (-68-+68)
-		$scope.changeLaneRight = function () {
-			console.log('INFO: Handling changeLaneRight');
+		$scope.changeLaneRight = function (carNo) {
+			console.log('INFO: Handling changeLaneRight for carno '+carNo);
 			var command = {
 				command: 'c',
 				param1: '68',
-				carId: '1',
+				carNo: carNo,
 				source: 'ui'
 			};
 			MainFactory.postCommand(command)
@@ -210,16 +210,16 @@ angular.module('htmlApp')
 		};
 
 		// Handler function for showInitialise
-		$scope.showInitialise = function () {
-			console.log('INFO: Handling showInitialise');
+		$scope.showInitialise = function (carNo) {
+			console.log('INFO: Handling showInitialise for carno '+carNo);
 		};
 
 		// Handler function for changeLight
-		$scope.changeLight = function () {
-			console.log('INFO: Handling changeLight');
+		$scope.changeLight = function (carNo) {
+			console.log('INFO: Handling changeLight for carno '+carNo);
 			var command = {
 				command: 'l',
-				carId: '1',
+				carNo: carNo,
 				source: 'ui'
 			};
 			MainFactory.postCommand(command)
@@ -234,11 +234,11 @@ angular.module('htmlApp')
 		};
 
 		// Handler function for changeLightPattern
-		$scope.changeLightPattern = function () {
-			console.log('INFO: Handling changeLightPattern');
+		$scope.changeLightPattern = function (carNo) {
+			console.log('INFO: Handling changeLightPattern for carno '+carNo);
 			var command = {
 				command: 'lp',
-				carId: '1',
+				carNo: carNo,
 				source: 'ui'
 			};
 			MainFactory.postCommand(command)
@@ -253,11 +253,11 @@ angular.module('htmlApp')
 		};
 
 		// Handler function for requestLevel
-		$scope.requestLevel = function () {
-			console.log('INFO: Handling requestLevel');
+		$scope.requestLevel = function (carNo) {
+			console.log('INFO: Handling requestLevel for carno '+carNo);
 			var command = {
 				command: 'bat',
-				carId: '1',
+				carNo: carNo,
 				source: 'ui'
 			};
 			MainFactory.postCommand(command)
@@ -272,10 +272,10 @@ angular.module('htmlApp')
 		};
 
 		// Initialise
-		$scope.lastUpdate = 'No update yet';
+		$scope.lastUpdate = 'N/A';
 		$scope.poll = false;
 		$scope.text = 'Start polling';
-		$scope.status = {};
+		$scope.status = [{},{},{}];
 	}]);
 
 

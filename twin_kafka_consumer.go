@@ -90,6 +90,15 @@ func handler(m *sarama.ConsumerMessage) error {
 		MainLogger.Printf("WARNING: Could not unmarshal message, ignoring: %s", m.Value)
 		return nil
 	}
-	TheStatus.MergeStatusUpdate(statusUpdate)
+
+	if statusUpdate.CarNo == "1" {
+		TheStatus[0].MergeStatusUpdate(statusUpdate)
+	} else if statusUpdate.CarNo == "2" {
+		TheStatus[1].MergeStatusUpdate(statusUpdate)
+	} else if statusUpdate.CarNo == "3" {
+		TheStatus[2].MergeStatusUpdate(statusUpdate)
+	} else {
+		MainLogger.Printf("WARNING: Ignoring message from unknown carNo: %s", statusUpdate.CarNo)
+	}
 	return nil
 }

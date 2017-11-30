@@ -79,7 +79,7 @@ func (tc *TwinController) PostCommand(w http.ResponseWriter, r *http.Request) {
 	// Send message to broker
 	TheProducer.Input() <- &sarama.ProducerMessage{
 		Value:     sarama.StringEncoder(cmdstr),
-		Topic:     "Command",
+		Topic:     "Command" + cmd.CarNo,
 		Partition: 0,
 		Timestamp: time.Now(),
 	}
