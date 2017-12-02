@@ -23,5 +23,5 @@ WORKDIR /go/src/edge-anki-twin
 COPY . /go/src/edge-anki-twin
 RUN go test 
 RUN go install 
-EXPOSE 8000
+EXPOSE 8001
 ENTRYPOINT [ "/go/bin/edge-anki-twin"]

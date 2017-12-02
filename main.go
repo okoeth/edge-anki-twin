@@ -80,5 +80,5 @@ func main() {
 	mux.Handle(pat.Get("/html/*"), http.FileServer(http.Dir("html/dist/")))
 	corsHandler := cors.Default().Handler(mux)
 	mlog.Printf("INFO: System is ready.\n")
-	http.ListenAndServe("0.0.0.0:8000", corsHandler)
+	http.ListenAndServe("0.0.0.0:8001", corsHandler)
 }

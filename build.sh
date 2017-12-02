@@ -25,13 +25,15 @@ if [ x = x$DOCKER_USER ]; then
 fi
 
 # Build Frontend
-cd html
-grunt
-if [ $? -ne 0 ]; then
-    echo "ERROR building fronted"
-    exit 1
+if [ xfrontend = x$1 ]; then
+    cd html
+    grunt
+    if [ $? -ne 0 ]; then
+        echo "ERROR building fronted"
+        exit 1
+    fi
+    cd .. 
 fi
-cd .. 
 
 # Build Backend
 docker build -t $DOCKER_USER/edge-anki-twin .
