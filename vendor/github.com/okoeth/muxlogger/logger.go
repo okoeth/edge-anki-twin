@@ -17,21 +17,26 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-package main
+package muxlogger
 
 import (
 	"bytes"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
+	"os"
 )
+
+// Variable plog is the logger for the package
+var plog = log.New(os.Stdout, "MUX-HTTP-LOGGER: ", log.Lshortfile|log.LstdFlags)
 
 // Logger is the actual implementation of the middleware
 func Logger(handler http.HandlerFunc) http.HandlerFunc {
 	logger := func(w http.ResponseWriter, r *http.Request) {
-		mlog.Printf("INFO: Request: %s/%d.%d %s %s", r.Proto, r.ProtoMajor, r.ProtoMinor, r.Method, r.URL.Path)
-		mlog.Printf("INFO:   Header: %s", logHeader(r.Header))
-		mlog.Printf("INFO:   Body: %s", logBody(r))
+		plog.Printf("INFO: Request: %s/%d.%d %s %s", r.Proto, r.ProtoMajor, r.ProtoMinor, r.Method, r.URL.Path)
+		plog.Printf("INFO:   Header: %s", logHeader(r.Header))
+		plog.Printf("INFO:   Body: %s", logBody(r))
 		handler.ServeHTTP(w, r)
 	}
 	return http.HandlerFunc(logger)
@@ -53,7 +58,7 @@ func logBody(r *http.Request) string {
 	body, err := ioutil.ReadAll(r.Body)
 	r.Body = ioutil.NopCloser(bytes.NewBuffer(body))
 	if err != nil {
-		mlog.Printf("ERROR: Error sending HTTP request: %v", err)
+		plog.Printf("ERROR: Error sending HTTP request: %v", err)
 		return ""
 	}
 	return string(body)

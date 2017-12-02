@@ -26,6 +26,8 @@ import (
 
 	"github.com/Shopify/sarama"
 	"github.com/okoeth/edge-anki-base/anki"
+	"github.com/okoeth/muxlogger"
+
 	"goji.io"
 	"goji.io/pat"
 )
@@ -43,8 +45,8 @@ func NewTwinController() *TwinController {
 
 // AddHandlers inserts new greeting
 func (tc *TwinController) AddHandlers(mux *goji.Mux) {
-	mux.HandleFunc(pat.Get("/v1/twin/status"), Logger(tc.GetStatus))
-	mux.HandleFunc(pat.Post("/v1/twin/command"), Logger(tc.PostCommand))
+	mux.HandleFunc(pat.Get("/v1/twin/status"), muxlogger.Logger(tc.GetStatus))
+	mux.HandleFunc(pat.Post("/v1/twin/command"), muxlogger.Logger(tc.PostCommand))
 }
 
 // GetStatus inserts new greeting

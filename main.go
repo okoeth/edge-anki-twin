@@ -67,7 +67,7 @@ func main() {
 		mlog.Fatalf("ERROR: Cannot create Kafka producer: %s", err)
 	}
 	TheProducer = p
-	c, err := anki.CreateKafkaConsumer(kafkaServer+":2181", TheStatus)
+	c, err := anki.CreateKafkaConsumer(kafkaServer+":2181", "edge.twin", TheStatus)
 	if err != nil {
 		mlog.Fatalf("ERROR: Cannot create Kafka consumer: %s", err)
 	}
