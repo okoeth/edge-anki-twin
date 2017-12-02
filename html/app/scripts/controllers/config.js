@@ -19,55 +19,29 @@
 
 'use strict';
 
-console.log('Initialise services at: '+window.location.href);
-var baseURL = '';
-
-function startsWithCharAt(string, pattern) {
-    for (var i = 0, length = pattern.length; i < length; i += 1) {
-      if (pattern.charAt(i) !== string.charAt(i)) {
-		  return false;
-	  }
-    }
-    return true;
-}
-
-if (startsWithCharAt(window.location.href, 'http://localhost:9000')) {
-	baseURL = 'http://localhost:8000';
-	console.log('INFO: Using hard coded dev server at: ' + baseURL);
-}
-
 /**
  * @ngdoc function
- * @name htmlApp.controller:MainCtrl
+ * @name htmlApp.controller:ConfigCtrl
  * @description
- * # MainCtrl
+ * # ConfigCtrl
  * Controller of the htmlApp
  */
 angular.module('htmlApp')
-	.factory('MainFactory', ['$http', function ($http) {
-		var MainFactory = {};
-		MainFactory.getStatus = function () {
-			return $http.get(baseURL + '/v1/twin/status');
+	.controller('ConfigCtrl', ['$scope', 'MainConfig', function ($scope, MainConfig) {
+		this.awesomeThings = [
+			'HTML5 Boilerplate',
+			'AngularJS',
+			'Karma'
+		];
+
+		// Handler function for togging of status polling
+		$scope.save = function () {
+			console.log('INFO: Save values');
+			MainConfig.slowSpeed = $scope.slowSpeed;
+			MainConfig.highSpeed = $scope.highSpeed;
 		};
-		MainFactory.postCommand = function (command) {
-			return $http.post(baseURL + '/v1/twin/command', command);
-		};
-		return MainFactory;
+
+		$scope.slowSpeed = MainConfig.slowSpeed;
+		$scope.highSpeed = MainConfig.highSpeed;
+		
 	}]);
-
-/**
- * @ngdoc function
- * @name htmlApp.controller:MainConfig
- * @description
- * # MainCtrl
- * Controller of the htmlApp
- */
-angular.module('htmlApp')
-.factory('MainConfig', function () {
-	var MainConfig = {};
-	MainConfig.slowSpeed = 250;
-	MainConfig.highSpeed = 750;
-	return MainConfig;
-});
-
-

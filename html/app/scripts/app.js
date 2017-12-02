@@ -15,8 +15,7 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch',
-    'ngJustGage'
+    'ngTouch'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -29,6 +28,11 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
+      })
+      .when('/config', {
+        templateUrl: 'views/config.html',
+        controller: 'ConfigCtrl',
+        controllerAs: 'config'
       })
       .when('/about', {
         templateUrl: 'views/about.html',

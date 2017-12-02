@@ -24,9 +24,9 @@ var timer;
 function refreshLoop($scope, $timeout, MainFactory) {
 	timer = $timeout(function () {
 		//console.log('INFO: Timer set');
-	}, 1000);
+	}, 300);
 	timer.then(function () {
-		console.log('INFO: Timer triggered');
+		//console.log('INFO: Timer triggered');
 		MainFactory.getStatus()
 			.then(
 			function (response) { // ok
@@ -52,12 +52,13 @@ function refreshLoop($scope, $timeout, MainFactory) {
  * Controller of the htmlApp
  */
 angular.module('htmlApp')
-	.controller('MainCtrl', ['$scope', '$timeout', 'MainFactory', function ($scope, $timeout, MainFactory) {
-		this.awesomeThings = [
-			'HTML5 Boilerplate',
-			'AngularJS',
-			'Karma'
-		];
+	.controller('MainCtrl', ['$scope', '$timeout', 'MainFactory', 'MainConfig',
+		function ($scope, $timeout, MainFactory, MainConfig) {
+			this.awesomeThings = [
+				'HTML5 Boilerplate',
+				'AngularJS',
+				'Karma'
+			];
 
 		// Handler function for togging of status polling
 		$scope.togglePoll = function () {
@@ -115,7 +116,7 @@ angular.module('htmlApp')
 			console.log('INFO: Handling changeSpeedUp for carno '+carNo);
 			var command = {
 				command: 's',
-				param1: '750',
+				param1: MainConfig.highSpeed,
 				carNo: carNo,
 				source: 'ui'
 			};
@@ -135,7 +136,7 @@ angular.module('htmlApp')
 			console.log('INFO: Handling changeSpeedDown for carno '+carNo);
 			var command = {
 				command: 's',
-				param1: '250',
+				param1: MainConfig.slowSpeed,
 				carNo: carNo,
 				source: 'ui'
 			};
