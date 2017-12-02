@@ -28,16 +28,17 @@ import (
 	"github.com/wvanbergen/kafka/consumergroup"
 
 	"github.com/Shopify/sarama"
+	"github.com/okoeth/edge-anki-base/anki"
 	"github.com/rs/cors"
 	"goji.io"
 	"goji.io/pat"
 )
 
-// MainLogger is the logger for the app
-var MainLogger = log.New(os.Stdout, "MWC-TWIN: ", log.Lshortfile|log.LstdFlags)
+// Variable mlog is the logger for the app
+var mlog = log.New(os.Stdout, "EDGE-ANKI-TWIN: ", log.Lshortfile|log.LstdFlags)
 
 // TheStatus carries the latest status information
-var TheStatus = [3]Status{}
+var TheStatus = [3]anki.Status{}
 
 // TheProducer provides a reference to the Kafka producer
 var TheProducer sarama.AsyncProducer
@@ -58,17 +59,17 @@ func main() {
 	// Set-up Kafka
 	kafkaServer := os.Getenv("KAFKA_SERVER")
 	if kafkaServer == "" {
-		MainLogger.Printf("INFO: Using 127.0.0.1 as default KAFKA_SERVER.")
+		mlog.Printf("INFO: Using 127.0.0.1 as default KAFKA_SERVER.")
 		kafkaServer = "127.0.0.1"
 	}
-	p, err := CreateKafkaProducer(kafkaServer + ":9092")
+	p, err := anki.CreateKafkaProducer(kafkaServer + ":9092")
 	if err != nil {
-		MainLogger.Fatalf("ERROR: Cannot create Kafka producer: %s", err)
+		mlog.Fatalf("ERROR: Cannot create Kafka producer: %s", err)
 	}
 	TheProducer = p
-	c, err := CreateKafkaConsumer(kafkaServer + ":2181")
+	c, err := anki.CreateKafkaConsumer(kafkaServer+":2181", TheStatus)
 	if err != nil {
-		MainLogger.Fatalf("ERROR: Cannot create Kafka consumer: %s", err)
+		mlog.Fatalf("ERROR: Cannot create Kafka consumer: %s", err)
 	}
 	TheConsumer = c
 
@@ -78,6 +79,6 @@ func main() {
 	tc.AddHandlers(mux)
 	mux.Handle(pat.Get("/html/*"), http.FileServer(http.Dir("html/dist/")))
 	corsHandler := cors.Default().Handler(mux)
-	MainLogger.Printf("INFO: System is ready.\n")
+	mlog.Printf("INFO: System is ready.\n")
 	http.ListenAndServe("0.0.0.0:8000", corsHandler)
 }

@@ -17,47 +17,43 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-package main
+package anki
 
-import (
-	"log"
-	"os"
-	"os/signal"
+import "errors"
 
-	"github.com/Shopify/sarama"
+type (
+	// Command represents a valid command with can be sent to the Anki Overdrive controller
+	Command struct {
+		Command string  `json:"command"`
+		CarNo   string  `json:"carNo"`
+		Param1  string  `json:"param1"`
+		Param2  string  `json:"param2"`
+		Param3  int     `json:"param3"`
+		Param4  int     `json:"param4"`
+		Param5  float32 `json:"param5"`
+		Source  string  `json:"source"`
+	}
 )
 
-// CreateKafkaProducer creates a Kafka producer which is conected to the respective Kafka server
-func CreateKafkaProducer(kafkaConn string) (sarama.AsyncProducer, error) {
-	config := sarama.NewConfig()
-	config.Producer.RequiredAcks = sarama.WaitForLocal
-	config.Producer.Compression = sarama.CompressionNone
-	var err error
-	producer, err := sarama.NewAsyncProducer([]string{kafkaConn}, config)
-
-	if err != nil {
-		return nil, err
+// ControllerString converts the command struct in a string that
+// can be processed by the Anki Overdrive controller
+func (c *Command) ControllerString() (string, error) {
+	if c.Command == "ping" {
+		return "ping", nil
+	} else if c.Command == "s" {
+		return "s " + c.Param1, nil
+	} else if c.Command == "e" {
+		return "e", nil
+	} else if c.Command == "c" {
+		return "c " + c.Param1, nil
+	} else if c.Command == "ver" {
+		return "ver", nil
+	} else if c.Command == "l" {
+		return "l", nil
+	} else if c.Command == "lp" {
+		return "lp", nil
+	} else if c.Command == "bat" {
+		return "bat", nil
 	}
-
-	c := make(chan os.Signal, 1)
-	signal.Notify(c, os.Interrupt)
-	signal.Notify(c, os.Kill)
-
-	go func() {
-		<-c
-		if err := producer.Close(); err != nil {
-			log.Fatal("Error closing async producer", err)
-		}
-
-		log.Println("Async Producer closed")
-		os.Exit(1)
-	}()
-
-	go func() {
-		for err := range producer.Errors() {
-			log.Println("Failed to write message to topic:", err)
-		}
-	}()
-
-	return producer, nil
+	return "", errors.New("Unknown Anki Overdrive controller command")
 }

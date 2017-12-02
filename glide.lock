@@ -1,5 +1,5 @@
-hash: 107a25cab97c141da665452322df0b9eb32fcf745b202e786dd1891d22f39151
-updated: 2017-11-26T10:33:37.850120056+01:00
+hash: 3feffa687be74a151ca903d7eaad56de612ab5aa84784de9ef86e263f694b00b
+updated: 2017-12-02T15:34:12.273902115+01:00
 imports:
 - name: github.com/davecgh/go-spew
   version: ecdeabc65495df2dec95d7c4a4c3e021903035e5
@@ -15,6 +15,10 @@ imports:
   version: 44cc805cf13205b55f69e14bcb69867d1ae92f98
 - name: github.com/golang/snappy
   version: 553a641470496b2327abcac10b36396bd98e45c9
+- name: github.com/okoeth/edge-anki-base
+  version: 82ef6d93332760e8969bb3f0b614dc30b6943436
+  subpackages:
+  - anki
 - name: github.com/pierrec/lz4
   version: 08c27939df1bd95e881e2c2367a749964ad1fceb
 - name: github.com/pierrec/xxHash
@@ -22,7 +26,7 @@ imports:
   subpackages:
   - xxHash32
 - name: github.com/rcrowley/go-metrics
-  version: 1f30fe9094a513ce4c700b9a54458bbb0c96996c
+  version: e181e095bae94582363434144c61a9653aff6e50
 - name: github.com/rs/cors
   version: 7af7a1e09ba336d2ea14b1ce73bf693c6837dbf6
 - name: github.com/samuel/go-zookeeper

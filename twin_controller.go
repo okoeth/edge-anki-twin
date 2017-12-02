@@ -25,6 +25,7 @@ import (
 	"time"
 
 	"github.com/Shopify/sarama"
+	"github.com/okoeth/edge-anki-base/anki"
 	"goji.io"
 	"goji.io/pat"
 )
@@ -50,7 +51,7 @@ func (tc *TwinController) AddHandlers(mux *goji.Mux) {
 func (tc *TwinController) GetStatus(w http.ResponseWriter, r *http.Request) {
 	sj, err := json.Marshal(TheStatus)
 	if err != nil {
-		MainLogger.Println("ERROR: Error de-marshaling TheStatus")
+		mlog.Println("ERROR: Error de-marshaling TheStatus")
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
@@ -62,20 +63,20 @@ func (tc *TwinController) GetStatus(w http.ResponseWriter, r *http.Request) {
 // PostCommand sends a command via Kafka to the controller
 func (tc *TwinController) PostCommand(w http.ResponseWriter, r *http.Request) {
 	// Read command from request
-	cmd := &Command{}
+	cmd := &anki.Command{}
 	err := json.NewDecoder(r.Body).Decode(cmd)
 	if err != nil {
-		MainLogger.Printf("ERROR: Error decoding request body: %s", err.Error())
+		mlog.Printf("ERROR: Error decoding request body: %s", err.Error())
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 	cmdstr, err := cmd.ControllerString()
 	if err != nil {
-		MainLogger.Println("ERROR: Error decoding command to commend string")
+		mlog.Println("ERROR: Error decoding command to commend string")
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	MainLogger.Printf("INFO: Received command string: %s", cmdstr)
+	mlog.Printf("INFO: Received command string: %s", cmdstr)
 	// Send message to broker
 	TheProducer.Input() <- &sarama.ProducerMessage{
 		Value:     sarama.StringEncoder(cmdstr),

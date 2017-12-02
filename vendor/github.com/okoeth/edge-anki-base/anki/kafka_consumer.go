@@ -17,7 +17,7 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-package main
+package anki
 
 import (
 	"encoding/json"
@@ -32,15 +32,16 @@ import (
 const consumerGroup = "mwc.twin"
 
 // CreateKafkaConsumer creates a Kafka consumer which is conected to the respective Kafka server
-func CreateKafkaConsumer(zookeeperConn string) (*consumergroup.ConsumerGroup, error) {
-	MainLogger.Println("Starting Consumer")
+func CreateKafkaConsumer(zookeeperConn string, theStatus [3]Status) (*consumergroup.ConsumerGroup, error) {
+	plog.Println("Starting Consumer")
 	config := consumergroup.NewConfig()
 	config.Offsets.Initial = sarama.OffsetOldest
 	config.Offsets.ProcessingTimeout = 10 * time.Second
 
 	consumer, err := consumergroup.JoinConsumerGroup(consumerGroup, []string{"Status"}, []string{zookeeperConn}, config)
 	if err != nil {
-		MainLogger.Println("ERROR: Failed to join consumer group", consumerGroup, err)
+		plog.Println("Starting Consumer")
+		plog.Println("ERROR: Failed to join consumer group", consumerGroup, err)
 		return nil, err
 	}
 
@@ -51,27 +52,27 @@ func CreateKafkaConsumer(zookeeperConn string) (*consumergroup.ConsumerGroup, er
 	go func() {
 		<-c
 		if err := consumer.Close(); err != nil {
-			MainLogger.Println("ERROR: Error closing the consumer", err)
+			plog.Println("ERROR: Error closing the consumer", err)
 		}
 
-		MainLogger.Println("INFO: Consumer closed")
+		plog.Println("INFO: Consumer closed")
 		os.Exit(0)
 	}()
 
 	go func() {
 		for err := range consumer.Errors() {
-			MainLogger.Println(err)
+			plog.Println(err)
 		}
 	}()
 
 	go func() {
-		MainLogger.Println("Waiting for messages")
+		plog.Println("Waiting for messages")
 		for message := range consumer.Messages() {
-			MainLogger.Printf("INFO: Topic: %s\t Partition: %v\t Offset: %v\n", message.Topic, message.Partition, message.Offset)
+			plog.Printf("INFO: Topic: %s\t Partition: %v\t Offset: %v\n", message.Topic, message.Partition, message.Offset)
 
-			e := handler(message)
+			e := handler(message, theStatus)
 			if e != nil {
-				MainLogger.Fatal(e)
+				plog.Fatal(e)
 				consumer.Close()
 			} else {
 				consumer.CommitUpto(message)
@@ -82,23 +83,23 @@ func CreateKafkaConsumer(zookeeperConn string) (*consumergroup.ConsumerGroup, er
 	return consumer, nil
 }
 
-func handler(m *sarama.ConsumerMessage) error {
-	MainLogger.Printf("INFO: Received message: %s", m.Value)
+func handler(m *sarama.ConsumerMessage, theStatus [3]Status) error {
+	plog.Printf("INFO: Received message: %s", m.Value)
 	statusUpdate := &Status{}
 	err := json.Unmarshal(m.Value, statusUpdate)
 	if err != nil {
-		MainLogger.Printf("WARNING: Could not unmarshal message, ignoring: %s", m.Value)
+		plog.Printf("WARNING: Could not unmarshal message, ignoring: %s", m.Value)
 		return nil
 	}
 
 	if statusUpdate.CarNo == "1" {
-		TheStatus[0].MergeStatusUpdate(statusUpdate)
+		theStatus[0].MergeStatusUpdate(statusUpdate)
 	} else if statusUpdate.CarNo == "2" {
-		TheStatus[1].MergeStatusUpdate(statusUpdate)
+		theStatus[1].MergeStatusUpdate(statusUpdate)
 	} else if statusUpdate.CarNo == "3" {
-		TheStatus[2].MergeStatusUpdate(statusUpdate)
+		theStatus[2].MergeStatusUpdate(statusUpdate)
 	} else {
-		MainLogger.Printf("WARNING: Ignoring message from unknown carNo: %s", statusUpdate.CarNo)
+		plog.Printf("WARNING: Ignoring message from unknown carNo: %s", statusUpdate.CarNo)
 	}
 	return nil
 }

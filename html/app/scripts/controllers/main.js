@@ -116,7 +116,7 @@ angular.module('htmlApp')
 			console.log('INFO: Handling changeSpeedUp for carno '+carNo);
 			var command = {
 				command: 's',
-				param1: MainConfig.highSpeed,
+				param1: ''+MainConfig.highSpeed,
 				carNo: carNo,
 				source: 'ui'
 			};
@@ -136,7 +136,7 @@ angular.module('htmlApp')
 			console.log('INFO: Handling changeSpeedDown for carno '+carNo);
 			var command = {
 				command: 's',
-				param1: MainConfig.slowSpeed,
+				param1: ''+MainConfig.slowSpeed,
 				carNo: carNo,
 				source: 'ui'
 			};

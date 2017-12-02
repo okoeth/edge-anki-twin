@@ -1,4 +1,4 @@
-package: mwc-twin
+package: edge-anki-twin
 import:
 - package: github.com/Shopify/sarama
   version: ^1.14.0
@@ -7,6 +7,9 @@ import:
 - package: github.com/wvanbergen/kafka
   subpackages:
   - consumergroup
+- package: github.com/okoeth/edge-anki-base
+  subpackages:
+  - anki
 - package: goji.io
   version: ^2.0.0
   subpackages:

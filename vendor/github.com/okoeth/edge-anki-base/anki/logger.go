@@ -17,44 +17,12 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-package main
+package anki
 
 import (
-	"bytes"
-	"fmt"
-	"io/ioutil"
-	"net/http"
+	"log"
+	"os"
 )
 
-// Logger is the actual implementation of the middleware
-func Logger(handler http.HandlerFunc) http.HandlerFunc {
-	logger := func(w http.ResponseWriter, r *http.Request) {
-		mlog.Printf("INFO: Request: %s/%d.%d %s %s", r.Proto, r.ProtoMajor, r.ProtoMinor, r.Method, r.URL.Path)
-		mlog.Printf("INFO:   Header: %s", logHeader(r.Header))
-		mlog.Printf("INFO:   Body: %s", logBody(r))
-		handler.ServeHTTP(w, r)
-	}
-	return http.HandlerFunc(logger)
-}
-
-// logHeader prints the header
-func logHeader(header http.Header) string {
-	hs := fmt.Sprintf("{ ")
-	for name, values := range header {
-		for _, value := range values {
-			hs = fmt.Sprintf("%s %s: %s, ", hs, name, value)
-		}
-	}
-	return fmt.Sprintf("%s }", hs)
-}
-
-// logBody prints the header
-func logBody(r *http.Request) string {
-	body, err := ioutil.ReadAll(r.Body)
-	r.Body = ioutil.NopCloser(bytes.NewBuffer(body))
-	if err != nil {
-		mlog.Printf("ERROR: Error sending HTTP request: %v", err)
-		return ""
-	}
-	return string(body)
-}
+// Variable plog is the logger for the package
+var plog = log.New(os.Stdout, "EDGE-ANKI-BASE: ", log.Lshortfile|log.LstdFlags)
