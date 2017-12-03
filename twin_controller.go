@@ -22,10 +22,8 @@ package main
 import (
 	"encoding/json"
 	"net/http"
-	"time"
 
-	"github.com/Shopify/sarama"
-	"github.com/okoeth/edge-anki-base/anki"
+	anki "github.com/okoeth/edge-anki-base"
 	"github.com/okoeth/muxlogger"
 
 	"goji.io"
@@ -35,23 +33,25 @@ import (
 type (
 	// TwinController represents the controller for working with this app
 	TwinController struct {
+		track []anki.Status
+		cmdCh chan anki.Command
 	}
 )
 
 // NewTwinController provides a reference to an IncomingController
-func NewTwinController() *TwinController {
-	return &TwinController{}
+func NewTwinController(t []anki.Status, ch chan anki.Command) *TwinController {
+	return &TwinController{track: t, cmdCh: ch}
 }
 
 // AddHandlers inserts new greeting
 func (tc *TwinController) AddHandlers(mux *goji.Mux) {
-	mux.HandleFunc(pat.Get("/v1/twin/status"), muxlogger.Logger(tc.GetStatus))
-	mux.HandleFunc(pat.Post("/v1/twin/command"), muxlogger.Logger(tc.PostCommand))
+	mux.HandleFunc(pat.Get("/v1/twin/status"), muxlogger.Logger(mlog, tc.GetStatus))
+	mux.HandleFunc(pat.Post("/v1/twin/command"), muxlogger.Logger(mlog, tc.PostCommand))
 }
 
 // GetStatus inserts new greeting
 func (tc *TwinController) GetStatus(w http.ResponseWriter, r *http.Request) {
-	sj, err := json.Marshal(TheStatus)
+	sj, err := json.Marshal(tc.track)
 	if err != nil {
 		mlog.Println("ERROR: Error de-marshaling TheStatus")
 		http.Error(w, err.Error(), http.StatusBadRequest)
@@ -65,26 +65,15 @@ func (tc *TwinController) GetStatus(w http.ResponseWriter, r *http.Request) {
 // PostCommand sends a command via Kafka to the controller
 func (tc *TwinController) PostCommand(w http.ResponseWriter, r *http.Request) {
 	// Read command from request
-	cmd := &anki.Command{}
-	err := json.NewDecoder(r.Body).Decode(cmd)
+	cmd := anki.Command{}
+	err := json.NewDecoder(r.Body).Decode(&cmd)
 	if err != nil {
 		mlog.Printf("ERROR: Error decoding request body: %s", err.Error())
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	cmdstr, err := cmd.ControllerString()
-	if err != nil {
-		mlog.Println("ERROR: Error decoding command to commend string")
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
-	mlog.Printf("INFO: Received command string: %s", cmdstr)
-	// Send message to broker
-	TheProducer.Input() <- &sarama.ProducerMessage{
-		Value:     sarama.StringEncoder(cmdstr),
-		Topic:     "Command" + cmd.CarNo,
-		Partition: 0,
-		Timestamp: time.Now(),
-	}
+	mlog.Printf("INFO: Sending command to channel")
+	tc.cmdCh <- cmd
+	mlog.Printf("INFO: Command processed by channel")
 	w.WriteHeader(http.StatusOK)
 }

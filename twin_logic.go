@@ -17,12 +17,18 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-package anki
+package main
 
 import (
-	"log"
-	"os"
+	anki "github.com/okoeth/edge-anki-base"
 )
 
-// Variable plog is the logger for the package
-var plog = log.New(os.Stdout, "EDGE-ANKI-BASE: ", log.Lshortfile|log.LstdFlags)
+func watchTrack(track []anki.Status, cmdCh chan anki.Command, statusCh chan anki.Status) {
+	for {
+		select {
+		case s := <-statusCh:
+			mlog.Printf("INFO: Received status update from channel")
+			anki.UpdateTrack(track, s)
+		}
+	}
+}

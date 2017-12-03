@@ -1,5 +1,5 @@
-hash: f50cf432d5b3930d4ce0d3d7224a962dad4cef3c245158a00f87c160c45e2389
-updated: 2017-12-02T17:38:45.292354414+01:00
+hash: 59a51ffe508e26795e66d39a73f880ba06add776a097b063a3a8e794959371ce
+updated: 2017-12-03T15:20:22.726982538+01:00
 imports:
 - name: github.com/davecgh/go-spew
   version: ecdeabc65495df2dec95d7c4a4c3e021903035e5
@@ -16,11 +16,9 @@ imports:
 - name: github.com/golang/snappy
   version: 553a641470496b2327abcac10b36396bd98e45c9
 - name: github.com/okoeth/edge-anki-base
-  version: 2120252028ff71587013c3a45ef9f35729c0c632
-  subpackages:
-  - anki
+  version: a3d4bad9fb73fe65fb83c40d639e18b898d1041d
 - name: github.com/okoeth/muxlogger
-  version: 70aff701f023303513c9d68993cf434decba93da
+  version: 92af94f8c27c62a45001c73b8a9bcc54f6db59ea
 - name: github.com/pierrec/lz4
   version: 08c27939df1bd95e881e2c2367a749964ad1fceb
 - name: github.com/pierrec/xxHash
