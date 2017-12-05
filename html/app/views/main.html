@@ -37,39 +37,39 @@ DEALINGS IN THE SOFTWARE.
         <!-- Car1 -->
         <td>{{ status[0].carSpeed }}</td>
         <td>
-          <a ng-click="changeSpeedDown('1')" class="btn btn-link">
+          <a ng-click="changeSpeedDown(1)" class="btn btn-link">
             <span class="glyphicon glyphicon-circle-arrow-down"></span>
           </a>
-          <a ng-click="changeSpeedUp('1')" class="btn btn-link">
+          <a ng-click="changeSpeedUp(1)" class="btn btn-link">
             <span class="glyphicon glyphicon-circle-arrow-up"></span>
           </a>
-          <a ng-click="changeSpeedStop('1')" class="btn btn-link">
+          <a ng-click="changeSpeedStop(1)" class="btn btn-link">
             <span class="glyphicon glyphicon-off"></span>
           </a>
         </td>
         <!-- Car2 -->
         <td>{{ status[1].carSpeed }}</td>
         <td>
-          <a ng-click="changeSpeedDown('2')" class="btn btn-link">
+          <a ng-click="changeSpeedDown(2)" class="btn btn-link">
             <span class="glyphicon glyphicon-circle-arrow-down"></span>
           </a>
-          <a ng-click="changeSpeedUp('2')" class="btn btn-link">
+          <a ng-click="changeSpeedUp(2)" class="btn btn-link">
             <span class="glyphicon glyphicon-circle-arrow-up"></span>
           </a>
-          <a ng-click="changeSpeedStop('2')" class="btn btn-link">
+          <a ng-click="changeSpeedStop(2)" class="btn btn-link">
             <span class="glyphicon glyphicon-off"></span>
           </a>
         </td>
         <!-- Car3 -->
         <td>{{ status[2].carSpeed }}</td>
         <td>
-          <a ng-click="changeSpeedDown('3')" class="btn btn-link">
+          <a ng-click="changeSpeedDown(3)" class="btn btn-link">
             <span class="glyphicon glyphicon-circle-arrow-down"></span>
           </a>
-          <a ng-click="changeSpeedUp('3')" class="btn btn-link">
+          <a ng-click="changeSpeedUp(3)" class="btn btn-link">
             <span class="glyphicon glyphicon-circle-arrow-up"></span>
           </a>
-          <a ng-click="changeSpeedStop('3')" class="btn btn-link">
+          <a ng-click="changeSpeedStop(3)" class="btn btn-link">
             <span class="glyphicon glyphicon-off"></span>
           </a>
         </td>
@@ -79,30 +79,30 @@ DEALINGS IN THE SOFTWARE.
         <!-- Car1 -->
         <td>{{ status[0].laneNo }}({{ status[0].laneOffset }})</td>
         <td>
-          <a ng-click="changeLaneLeft('1')" class="btn btn-link">
+          <a ng-click="changeLaneLeft(1)" class="btn btn-link">
             <span class="glyphicon glyphicon-circle-arrow-left"></span>
           </a>
-          <a ng-click="changeLaneRight('1')" class="btn btn-link">
+          <a ng-click="changeLaneRight(1)" class="btn btn-link">
             <span class="glyphicon glyphicon-circle-arrow-right"></span>
           </a>
         </td>
         <!-- Car2 -->
         <td>{{ status[1].laneNo }}({{ status[1].laneOffset }})</td>
         <td>
-          <a ng-click="changeLaneLeft('2')" class="btn btn-link">
+          <a ng-click="changeLaneLeft(2)" class="btn btn-link">
             <span class="glyphicon glyphicon-circle-arrow-left"></span>
           </a>
-          <a ng-click="changeLaneRight('2')" class="btn btn-link">
+          <a ng-click="changeLaneRight(2)" class="btn btn-link">
             <span class="glyphicon glyphicon-circle-arrow-right"></span>
           </a>
         </td>
         <!-- Car3 -->
         <td>{{ status[2].laneNo }}({{ status[2].laneOffset }})</td>
         <td>
-          <a ng-click="changeLaneLeft('3')" class="btn btn-link">
+          <a ng-click="changeLaneLeft(3)" class="btn btn-link">
             <span class="glyphicon glyphicon-circle-arrow-left"></span>
           </a>
-          <a ng-click="changeLaneRight('3')" class="btn btn-link">
+          <a ng-click="changeLaneRight(3)" class="btn btn-link">
             <span class="glyphicon glyphicon-circle-arrow-right"></span>
           </a>
         </td>
@@ -112,30 +112,30 @@ DEALINGS IN THE SOFTWARE.
         <!-- Car1 -->
         <td>N/A</td>
         <td>
-          <a ng-click="changeLight('1')" class="btn btn-link">
+          <a ng-click="changeLight(1)" class="btn btn-link">
             <span class="glyphicon glyphicon-star"></span>
           </a>
-          <a ng-click="changeLightPattern('1')" class="btn btn-link">
+          <a ng-click="changeLightPattern(1)" class="btn btn-link">
             <span class="glyphicon glyphicon-asterisk"></span>
           </a>
         </td>
         <!-- Car2 -->
         <td>N/A</td>
         <td>
-          <a ng-click="changeLight('2')" class="btn btn-link">
+          <a ng-click="changeLight(2)" class="btn btn-link">
             <span class="glyphicon glyphicon-star"></span>
           </a>
-          <a ng-click="changeLightPattern('2')" class="btn btn-link">
+          <a ng-click="changeLightPattern(2)" class="btn btn-link">
             <span class="glyphicon glyphicon-asterisk"></span>
           </a>
         </td>
         <!-- Car3 -->
         <td>N/A</td>
         <td>
-          <a ng-click="changeLight('3')" class="btn btn-link">
+          <a ng-click="changeLight(3)" class="btn btn-link">
             <span class="glyphicon glyphicon-star"></span>
           </a>
-          <a ng-click="changeLightPattern('3')" class="btn btn-link">
+          <a ng-click="changeLightPattern(3)" class="btn btn-link">
             <span class="glyphicon glyphicon-asterisk"></span>
           </a>
         </td>
@@ -145,21 +145,21 @@ DEALINGS IN THE SOFTWARE.
         <!-- Car1 -->
         <td>{{ status[0].carVersion }}</td>
         <td>
-          <a ng-click="requestVersion('1')" class="btn btn-link">
+          <a ng-click="requestVersion(1)" class="btn btn-link">
             <span class="glyphicon glyphicon-repeat"></span>
           </a>
         </td>
         <!-- Car2 -->
         <td>{{ status[1].carVersion }}</td>
         <td>
-          <a ng-click="requestVersion('2')" class="btn btn-link">
+          <a ng-click="requestVersion(2)" class="btn btn-link">
             <span class="glyphicon glyphicon-repeat"></span>
           </a>
         </td>
         <!-- Car3 -->
         <td>{{ status[2].carVersion }}</td>
         <td>
-          <a ng-click="requestVersion('3')" class="btn btn-link">
+          <a ng-click="requestVersion(3)" class="btn btn-link">
             <span class="glyphicon glyphicon-repeat"></span>
           </a>
         </td>
@@ -169,21 +169,21 @@ DEALINGS IN THE SOFTWARE.
         <!-- Car1 -->
         <td>{{ status[0].carBatteryLevel }}</td>
         <td>
-          <a ng-click="requestLevel('1')" class="btn btn-link">
+          <a ng-click="requestLevel(1)" class="btn btn-link">
             <span class="glyphicon glyphicon-repeat"></span>
           </a>
         </td>
         <!-- Car2 -->
         <td>{{ status[1].carBatteryLevel }}</td>
         <td>
-          <a ng-click="requestLevel('2')" class="btn btn-link">
+          <a ng-click="requestLevel(2)" class="btn btn-link">
             <span class="glyphicon glyphicon-repeat"></span>
           </a>
         </td>
         <!-- Car3 -->
         <td>{{ status[2].carBatteryLevel }}</td>
         <td>
-          <a ng-click="requestLevel('3')" class="btn btn-link">
+          <a ng-click="requestLevel(3)" class="btn btn-link">
             <span class="glyphicon glyphicon-repeat"></span>
           </a>
         </td>

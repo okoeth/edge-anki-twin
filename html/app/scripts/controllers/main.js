@@ -175,7 +175,8 @@ angular.module('htmlApp')
 			console.log('INFO: Handling changeLaneLeft for carno '+carNo);
 			var command = {
 				command: 'c',
-				param1: 'left',
+				param1: '', // Will be evaluated by server
+				param2: 'left',
 				carNo: carNo,
 				source: 'ui'
 			};
@@ -195,7 +196,8 @@ angular.module('htmlApp')
 			console.log('INFO: Handling changeLaneRight for carno '+carNo);
 			var command = {
 				command: 'c',
-				param1: 'right',
+				param1: '', // Will be evaluated by server
+				param2: 'right',
 				carNo: carNo,
 				source: 'ui'
 			};

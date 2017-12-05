@@ -73,6 +73,7 @@ func (tc *TwinController) PostCommand(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	mlog.Printf("INFO: Sending command to channel")
+	cmd.CalculateLaneNo(tc.track[cmd.CarNo].LaneNo)
 	tc.cmdCh <- cmd
 	mlog.Printf("INFO: Command processed by channel")
 	w.WriteHeader(http.StatusOK)
