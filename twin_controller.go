@@ -45,7 +45,7 @@ func NewTwinController(t []anki.Status, ch chan anki.Command) *TwinController {
 
 // AddHandlers inserts new greeting
 func (tc *TwinController) AddHandlers(mux *goji.Mux) {
-	mux.HandleFunc(pat.Get("/v1/twin/status"), muxlogger.Logger(mlog, tc.GetStatus))
+	mux.HandleFunc(pat.Get("/v1/twin/status"), tc.GetStatus) // Omitting logger for GetStatus
 	mux.HandleFunc(pat.Post("/v1/twin/command"), muxlogger.Logger(mlog, tc.PostCommand))
 }
 
