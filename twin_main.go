@@ -41,7 +41,7 @@ func init() {
 func main() {
 	// Set-up channels for status and commands
 	anki.SetLogger(mlog)
-	cmdCh, statusCh, err := anki.CreateChannels("edge.overtake")
+	cmdCh, statusCh, err := anki.CreateChannels("edge.twin")
 	if err != nil {
 		mlog.Fatalln("FATAL: Could not establish channels: %s", err)
 	}

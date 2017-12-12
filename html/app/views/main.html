@@ -28,14 +28,28 @@ DEALINGS IN THE SOFTWARE.
     <table class="table table-striped">
       <tr>
         <th>Sensor</th>
+        <th colspan="2">Car 0</th>
         <th colspan="2">Car 1</th>
         <th colspan="2">Car 2</th>
         <th colspan="2">Car 3</th>
       </tr>
       <tr>
         <td>Car Speed</td>
-        <!-- Car1 -->
+        <!-- Car0 -->
         <td>{{ status[0].carSpeed }}</td>
+        <td>
+          <a ng-click="changeSpeedDown(0)" class="btn btn-link">
+            <span class="glyphicon glyphicon-circle-arrow-down"></span>
+          </a>
+          <a ng-click="changeSpeedUp(0)" class="btn btn-link">
+            <span class="glyphicon glyphicon-circle-arrow-up"></span>
+          </a>
+          <a ng-click="changeSpeedStop(0)" class="btn btn-link">
+            <span class="glyphicon glyphicon-off"></span>
+          </a>
+        </td>
+        <!-- Car1 -->
+        <td>{{ status[1].carSpeed }}</td>
         <td>
           <a ng-click="changeSpeedDown(1)" class="btn btn-link">
             <span class="glyphicon glyphicon-circle-arrow-down"></span>
@@ -48,7 +62,7 @@ DEALINGS IN THE SOFTWARE.
           </a>
         </td>
         <!-- Car2 -->
-        <td>{{ status[1].carSpeed }}</td>
+        <td>{{ status[2].carSpeed }}</td>
         <td>
           <a ng-click="changeSpeedDown(2)" class="btn btn-link">
             <span class="glyphicon glyphicon-circle-arrow-down"></span>
@@ -61,7 +75,7 @@ DEALINGS IN THE SOFTWARE.
           </a>
         </td>
         <!-- Car3 -->
-        <td>{{ status[2].carSpeed }}</td>
+        <td>{{ status[3].carSpeed }}</td>
         <td>
           <a ng-click="changeSpeedDown(3)" class="btn btn-link">
             <span class="glyphicon glyphicon-circle-arrow-down"></span>
@@ -75,9 +89,19 @@ DEALINGS IN THE SOFTWARE.
         </td>
       </tr>
       <tr>
-        <td>Car Lane</td>
-        <!-- Car1 -->
+        <td>Car Lane No (Offset)</td>
+        <!-- Car0 -->
         <td>{{ status[0].laneNo }}({{ status[0].laneOffset }})</td>
+        <td>
+          <a ng-click="changeLaneLeft(0)" class="btn btn-link">
+            <span class="glyphicon glyphicon-circle-arrow-left"></span>
+          </a>
+          <a ng-click="changeLaneRight(0)" class="btn btn-link">
+            <span class="glyphicon glyphicon-circle-arrow-right"></span>
+          </a>
+        </td>
+        <!-- Car1 -->
+        <td>{{ status[1].laneNo }}({{ status[0].laneOffset }})</td>
         <td>
           <a ng-click="changeLaneLeft(1)" class="btn btn-link">
             <span class="glyphicon glyphicon-circle-arrow-left"></span>
@@ -87,7 +111,7 @@ DEALINGS IN THE SOFTWARE.
           </a>
         </td>
         <!-- Car2 -->
-        <td>{{ status[1].laneNo }}({{ status[1].laneOffset }})</td>
+        <td>{{ status[2].laneNo }}({{ status[1].laneOffset }})</td>
         <td>
           <a ng-click="changeLaneLeft(2)" class="btn btn-link">
             <span class="glyphicon glyphicon-circle-arrow-left"></span>
@@ -97,7 +121,7 @@ DEALINGS IN THE SOFTWARE.
           </a>
         </td>
         <!-- Car3 -->
-        <td>{{ status[2].laneNo }}({{ status[2].laneOffset }})</td>
+        <td>{{ status[3].laneNo }}({{ status[2].laneOffset }})</td>
         <td>
           <a ng-click="changeLaneLeft(3)" class="btn btn-link">
             <span class="glyphicon glyphicon-circle-arrow-left"></span>
@@ -108,7 +132,55 @@ DEALINGS IN THE SOFTWARE.
         </td>
       </tr>
       <tr>
+        <td>Car Lane Length</td>
+        <!-- Car0 -->
+        <td>{{ status[0].laneLength }}</td>
+        <td>
+        </td>
+        <!-- Car1 -->
+        <td>{{ status[1].laneLength }}</td>
+        <td>
+        </td>
+        <!-- Car2 -->
+        <td>{{ status[2].laneLength }}</td>
+        <td>
+        </td>
+        <!-- Car3 -->
+        <td>{{ status[3].laneLength }}</td>
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <td>Car Lane Timestamp</td>
+        <!-- Car0 -->
+        <td>{{ status[0].laneTimestamp }}</td>
+        <td>
+        </td>
+        <!-- Car1 -->
+        <td>{{ status[1].laneTimestamp }}</td>
+        <td>
+        </td>
+        <!-- Car2 -->
+        <td>{{ status[2].laneTimestamp }}</td>
+        <td>
+        </td>
+        <!-- Car3 -->
+        <td>{{ status[3].laneTimestamp }}</td>
+        <td>
+        </td>
+      </tr>
+      <tr>
         <td>Car Lights</td>
+        <!-- Car0 -->
+        <td>N/A</td>
+        <td>
+          <a ng-click="changeLight(0)" class="btn btn-link">
+            <span class="glyphicon glyphicon-star"></span>
+          </a>
+          <a ng-click="changeLightPattern(0)" class="btn btn-link">
+            <span class="glyphicon glyphicon-asterisk"></span>
+          </a>
+        </td>
         <!-- Car1 -->
         <td>N/A</td>
         <td>
@@ -142,22 +214,29 @@ DEALINGS IN THE SOFTWARE.
       </tr>
       <tr>
         <td>Car Version</td>
-        <!-- Car1 -->
+        <!-- Car0 -->
         <td>{{ status[0].carVersion }}</td>
+        <td>
+          <a ng-click="requestVersion(0)" class="btn btn-link">
+            <span class="glyphicon glyphicon-repeat"></span>
+          </a>
+        </td>
+        <!-- Car1 -->
+        <td>{{ status[1].carVersion }}</td>
         <td>
           <a ng-click="requestVersion(1)" class="btn btn-link">
             <span class="glyphicon glyphicon-repeat"></span>
           </a>
         </td>
         <!-- Car2 -->
-        <td>{{ status[1].carVersion }}</td>
+        <td>{{ status[2].carVersion }}</td>
         <td>
           <a ng-click="requestVersion(2)" class="btn btn-link">
             <span class="glyphicon glyphicon-repeat"></span>
           </a>
         </td>
         <!-- Car3 -->
-        <td>{{ status[2].carVersion }}</td>
+        <td>{{ status[3].carVersion }}</td>
         <td>
           <a ng-click="requestVersion(3)" class="btn btn-link">
             <span class="glyphicon glyphicon-repeat"></span>
@@ -166,22 +245,29 @@ DEALINGS IN THE SOFTWARE.
       </tr>
       <tr>
         <td>Car Battery Level</td>
-        <!-- Car1 -->
+        <!-- Car0 -->
         <td>{{ status[0].carBatteryLevel }}</td>
+        <td>
+          <a ng-click="requestLevel(0)" class="btn btn-link">
+            <span class="glyphicon glyphicon-repeat"></span>
+          </a>
+        </td>
+        <!-- Car1 -->
+        <td>{{ status[1].carBatteryLevel }}</td>
         <td>
           <a ng-click="requestLevel(1)" class="btn btn-link">
             <span class="glyphicon glyphicon-repeat"></span>
           </a>
         </td>
         <!-- Car2 -->
-        <td>{{ status[1].carBatteryLevel }}</td>
+        <td>{{ status[2].carBatteryLevel }}</td>
         <td>
           <a ng-click="requestLevel(2)" class="btn btn-link">
             <span class="glyphicon glyphicon-repeat"></span>
           </a>
         </td>
         <!-- Car3 -->
-        <td>{{ status[2].carBatteryLevel }}</td>
+        <td>{{ status[3].carBatteryLevel }}</td>
         <td>
           <a ng-click="requestLevel(3)" class="btn btn-link">
             <span class="glyphicon glyphicon-repeat"></span>
@@ -190,37 +276,48 @@ DEALINGS IN THE SOFTWARE.
       </tr>
       <tr>
         <td>Position Timestamp</td>
-        <!-- Car1 -->
+        <!-- Car0 -->
         <td>{{ status[0].msgID }}</td>
         <td>
         </td>
-        <!-- Car2 -->
+        <!-- Car1 -->
         <td>{{ status[1].msgID }}</td>
         <td>
         </td>
-        <!-- Car3 -->
+        <!-- Car2 -->
         <td>{{ status[2].msgID }}</td>
+        <td>
+        </td>
+        <!-- Car3 -->
+        <td>{{ status[3].msgID }}</td>
         <td>
         </td>
       </tr>
       <tr>
         <td>Position Tile No</td>
-        <!-- Car1 -->
+        <!-- Car0 -->
         <td>{{ status[0].posTileNo }}</td>
         <td>
           <a class="btn btn-link">
             <span class="glyphicon glyphicon-xxx"></span>
           </a>
         </td>
-        <!-- Car2 -->
+        <!-- Car1 -->
         <td>{{ status[1].posTileNo }}</td>
         <td>
           <a class="btn btn-link">
             <span class="glyphicon glyphicon-xxx"></span>
           </a>
         </td>
-        <!-- Car3 -->
+        <!-- Car2 -->
         <td>{{ status[2].posTileNo }}</td>
+        <td>
+          <a class="btn btn-link">
+            <span class="glyphicon glyphicon-xxx"></span>
+          </a>
+        </td>
+        <!-- Car3 -->
+        <td>{{ status[3].posTileNo }}</td>
         <td>
           <a class="btn btn-link">
             <span class="glyphicon glyphicon-xxx"></span>
@@ -229,22 +326,29 @@ DEALINGS IN THE SOFTWARE.
       </tr>
       <tr>
         <td>Position Tile Type</td>
-        <!-- Car1 -->
+        <!-- Car0 -->
         <td>{{ status[0].posTileType }}</td>
         <td>
           <a class="btn btn-link">
             <span class="glyphicon glyphicon-xxx"></span>
           </a>
         </td>
-        <!-- Car2 -->
+        <!-- Car1 -->
         <td>{{ status[1].posTileType }}</td>
         <td>
           <a class="btn btn-link">
             <span class="glyphicon glyphicon-xxx"></span>
           </a>
         </td>
-        <!-- Car3 -->
+        <!-- Car2 -->
         <td>{{ status[2].posTileType }}</td>
+        <td>
+          <a class="btn btn-link">
+            <span class="glyphicon glyphicon-xxx"></span>
+          </a>
+        </td>
+        <!-- Car3 -->
+        <td>{{ status[3].posTileType }}</td>
         <td>
           <a class="btn btn-link">
             <span class="glyphicon glyphicon-xxx"></span>
@@ -253,22 +357,29 @@ DEALINGS IN THE SOFTWARE.
       </tr>
       <tr>
         <td>Position Location</td>
-        <!-- Car1 -->
+        <!-- Car0 -->
         <td>{{ status[0].posLocation }}</td>
         <td>
           <a class="btn btn-link">
             <span class="glyphicon glyphicon-xxx"></span>
           </a>
         </td>
-        <!-- Car2 -->
+        <!-- Car1 -->
         <td>{{ status[1].posLocation }}</td>
         <td>
           <a class="btn btn-link">
             <span class="glyphicon glyphicon-xxx"></span>
           </a>
         </td>
-        <!-- Car3 -->
+        <!-- Car2 -->
         <td>{{ status[2].posLocation }}</td>
+        <td>
+          <a class="btn btn-link">
+            <span class="glyphicon glyphicon-xxx"></span>
+          </a>
+        </td>
+        <!-- Car3 -->
+        <td>{{ status[3].posLocation }}</td>
         <td>
           <a class="btn btn-link">
             <span class="glyphicon glyphicon-xxx"></span>

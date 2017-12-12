@@ -24,7 +24,7 @@ var timer;
 function refreshLoop($scope, $timeout, MainFactory) {
 	timer = $timeout(function () {
 		//console.log('INFO: Timer set');
-	}, 1000);
+	}, 200);
 	timer.then(function () {
 		console.log('INFO: Timer triggered');
 		MainFactory.getStatus()
