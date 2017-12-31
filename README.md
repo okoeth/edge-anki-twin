@@ -20,6 +20,8 @@ Note: This assumes that you are logged into the docker registry. Currently only 
 See...
 TODO: Add ref to `edge-docker` project
 
+## Building in OpenShift
+
 ## References
 [Introduction of Sarama](https://medium.com/@Oskarr3/implementing-cqrs-using-kafka-and-sarama-library-in-golang-da7efa3b77fe)
 [Explanation of code below](https://engineering.randrr.com/getting-started-with-kafka-using-go-5a89f8555009)
