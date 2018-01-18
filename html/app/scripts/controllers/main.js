@@ -1,20 +1,20 @@
 // Copyright 2018 NTT Group
 
-// Permission is hereby granted, free of charge, to any person obtaining a copy of this 
-// software and associated documentation files (the "Software"), to deal in the Software 
-// without restriction, including without limitation the rights to use, copy, modify, 
-// merge, publish, distribute, sublicense, and/or sell copies of the Software, and to 
-// permit persons to whom the Software is furnished to do so, subject to the following 
+// Permission is hereby granted, free of charge, to any person obtaining a copy of this
+// software and associated documentation files (the "Software"), to deal in the Software
+// without restriction, including without limitation the rights to use, copy, modify,
+// merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to the following
 // conditions:
 
-// The above copyright notice and this permission notice shall be included in all copies 
+// The above copyright notice and this permission notice shall be included in all copies
 // or substantial portions of the Software.
 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR 
-// PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE 
-// FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR 
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+// PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+// FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
 'use strict';
@@ -74,7 +74,7 @@ angular.module('htmlApp')
 		};
 
 		// Handler function for pinging the car
-		$scope.requestPing = function (carNo) {			
+		$scope.requestPing = function (carNo) {
 			console.log('INFO: Handling requestPing for carno '+carNo);
 			var command = {
 				command: 'ping',
@@ -110,6 +110,26 @@ angular.module('htmlApp')
 				}
 				);
 		};
+
+    // Handler function for changeSpeedUp of the car (250-1000)
+    $scope.swapCar = function (carNo) {
+      console.log('INFO: Handling swap bluetooth id for carno '+carNo);
+      var command = {
+        command: 'swap',
+        param1: ''+$scope["car" + carNo + "BtId"],
+        carNo: carNo,
+        source: 'ui'
+      };
+      MainFactory.postCommand(command)
+        .then(
+          function (response) { // ok
+            console.log('INFO: Swap command submitted to server: '+response.statusText);
+          },
+          function (response) { // nok
+            console.error('ERROR: Request failed: ' + response.statusText);
+          }
+        );
+    };
 
 		// Handler function for changeSpeedUp of the car (250-1000)
 		$scope.changeSpeedUp = function (carNo) {
@@ -279,6 +299,13 @@ angular.module('htmlApp')
 		$scope.poll = false;
 		$scope.text = 'Start polling';
 		$scope.status = [{},{},{}];
+
+    $scope.cars = [
+      {model : "1 Ground Shock", btid:"ec7d32207f95"},
+      {model : "2 Skull", btid : "edef582991e2"},
+      {model : "3 FF 1", btid : "d00a267f9e09"},
+      {model : "4 FF 2", btid : "d4b42cc5cf27"}
+    ];
 	}]);
 
 

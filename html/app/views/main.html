@@ -1,21 +1,21 @@
 <!--
 Copyright 2018 NTT Group
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this 
-software and associated documentation files (the "Software"), to deal in the Software 
-without restriction, including without limitation the rights to use, copy, modify, 
-merge, publish, distribute, sublicense, and/or sell copies of the Software, and to 
-permit persons to whom the Software is furnished to do so, subject to the following 
+Permission is hereby granted, free of charge, to any person obtaining a copy of this
+software and associated documentation files (the "Software"), to deal in the Software
+without restriction, including without limitation the rights to use, copy, modify,
+merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to the following
 conditions:
 
-The above copyright notice and this permission notice shall be included in all copies 
+The above copyright notice and this permission notice shall be included in all copies
 or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
-INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR 
-PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE 
-FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR 
-OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 -->
 
@@ -32,6 +32,37 @@ DEALINGS IN THE SOFTWARE.
         <th colspan="2">Car 1</th>
         <th colspan="2">Car 2</th>
         <th colspan="2">Car 3</th>
+      </tr>
+      <tr>
+        <td>Bluetooth ID</td>
+
+        <td>{{ status[0].CarID }}</td>
+        <td>
+        <select ng-model="car0BtId" ng-change="swapCar(0)">
+          <option ng-repeat="x in cars" value="{{x.btid}}">{{x.model}}</option>
+        </select>
+        </td>
+
+        <td>{{ status[1].CarID }}</td>
+        <td>
+        <select ng-model="car1BtId" ng-change="swapCar(1)">
+          <option ng-repeat="x in cars" value="{{x.btid}}">{{x.model}}</option>
+        </select>
+        </td>
+
+        <td>{{ status[2].CarID }}</td>
+        <td>
+        <select ng-model="car2BtId" ng-change="swapCar(2)">
+          <option ng-repeat="x in cars" value="{{x.btid}}">{{x.model}}</option>
+        </select>
+        </td>
+
+        <td>{{ status[3].CarID }}</td>
+        <td>
+        <select ng-model="car3BtId" ng-change="swapCar(3)">
+          <option ng-repeat="x in cars" value="{{x.btid}}">{{x.model}}</option>
+        </select>
+        </td>
       </tr>
       <tr>
         <td>Car Speed</td>

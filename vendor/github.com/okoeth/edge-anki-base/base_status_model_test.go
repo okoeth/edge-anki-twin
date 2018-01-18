@@ -29,7 +29,7 @@ var dataMarshaling = [][]byte{[]byte(`{
 		"carNo":1,
 		"carID":"asdf",
 		"carSpeed":258,
-		"posTileType":17,
+		"posTileType":"17",
 		"posLocation":33,
 		"posTileNo":1,
 		"posOptions": [
@@ -43,20 +43,20 @@ var dataMarshaling = [][]byte{[]byte(`{
 			}
 		],
 		"laneNo":1,
-		"laneOffset":-67.44000244140625
+		"laneOffset":-67
 	}`),
-	[]byte(`{ 
+	[]byte(`{
 		"msgID":39,
 		"msgName":"POSITION_UPDATE",
 		"msgTimestamp":"2017-12-02T21:04:20.071Z",
 		"carNo":1,
 		"carID":"asdf",
 		"carSpeed":258,
-		"posTileType":17,
+		"posTileType":"17",
 		"posLocation":33,
 		"posTileNo":1,
 		"laneNo":1,
-		"laneOffset":-67.44000244140625
+		"laneOffset":-67
 	}`)}
 
 var tss = []Status{
@@ -142,6 +142,10 @@ func TestMarshaling(t *testing.T) {
 			t.Errorf("Number of elements: %d", len(s.PosOptions))
 			t.Fail()
 		}
+		if s.Identify() == "" {
+			t.Errorf("Empty identifier: %s", s.Identify())
+			t.Fail()
+		}
 		//TODO: More field tests to add
 	}
 }
@@ -155,5 +159,24 @@ func TestTileNo(t *testing.T) {
 			t.Errorf("Wrong tileNo, expcted: %d / found: %d", resultTileNo[i], currentStatus.PosTileNo)
 			t.Fail()
 		}
+	}
+}
+
+func TestMarshallingCSV(t *testing.T) {
+	t.Log("Testing mashalling csv")
+
+	var err error
+
+	test1 := "39;2018-01-08T17:01:30.462Z;35;17;258;undefined;null;8;50,0:50,6:;"
+	_, err = parseCSV(test1)
+	if err != nil {
+		t.FailNow()
+	}
+
+
+	test2 := "41;2018-01-08T17:01:26.513Z;undefined;undefined;NaN;null;null;0;;"
+	_, err = parseCSV(test2)
+	if err == nil {
+		t.FailNow()
 	}
 }
