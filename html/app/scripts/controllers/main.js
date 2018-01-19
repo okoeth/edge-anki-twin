@@ -31,6 +31,18 @@ function refreshLoop($scope, $timeout, MainFactory) {
 			.then(
 			function (response) { // ok
 				$scope.status = response.data;
+				if(!$scope.car0BtId) {
+          $scope.car0BtId = $scope.status[0].carID;
+        }
+        if(!$scope.car1BtId) {
+          $scope.car1BtId = $scope.status[1].carID;
+        }
+        if(!$scope.car2BtId) {
+          $scope.car2BtId = $scope.status[2].carID;
+        }
+        if(!$scope.car3BtId) {
+          $scope.car3BtId = $scope.status[3].carID;
+        }
 			},
 			function (response) { // nok
 				console.error('ERROR: Request failed: ' + response.statusText);
@@ -301,10 +313,12 @@ angular.module('htmlApp')
 		$scope.status = [{},{},{}];
 
     $scope.cars = [
-      {model : '1 Ground Shock', btid:'ec7d32207f95'},
-      {model : '2 Skull', btid : 'edef582991e2'},
-      {model : '3 FF 1', btid : 'd00a267f9e09'},
-      {model : '4 FF 2', btid : 'd4b42cc5cf27'}
+      {model : '1 Skull', btid:'ec7d32207f95'},
+      {model : '2 Ground Shock', btid : 'edef582991e2'},
+      {model : '3 FF Truck', btid : 'd00a267f9e09'},
+      {model : '4 FF Mustang', btid : 'd4b42cc5cf27'},
+      {model : '5 Red Supercar', btid: 'f65332e1688c'},
+      {model : '6 Truck', btid: 'df46034abd1b'}
     ];
 	}]);
 

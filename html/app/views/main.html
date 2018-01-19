@@ -36,32 +36,48 @@ DEALINGS IN THE SOFTWARE.
       <tr>
         <td>Bluetooth ID</td>
 
-        <td>{{ status[0].carID }}</td>
         <td>
         <select ng-model="car0BtId" ng-change="swapCar(0)">
           <option ng-repeat="x in cars" value="{{x.btid}}">{{x.model}}</option>
         </select>
         </td>
+        <td>
+          <a ng-click="swapCar(0)" class="btn btn-link">
+            <span class="glyphicon glyphicon-repeat"></span>
+          </a>
+        </td>
 
-        <td>{{ status[1].carID }}</td>
         <td>
         <select ng-model="car1BtId" ng-change="swapCar(1)">
           <option ng-repeat="x in cars" value="{{x.btid}}">{{x.model}}</option>
         </select>
         </td>
+        <td>
+          <a ng-click="swapCar(1)" class="btn btn-link">
+            <span class="glyphicon glyphicon-repeat"></span>
+          </a>
+        </td>
 
-        <td>{{ status[2].carID }}</td>
         <td>
         <select ng-model="car2BtId" ng-change="swapCar(2)">
           <option ng-repeat="x in cars" value="{{x.btid}}">{{x.model}}</option>
         </select>
         </td>
+        <td>
+          <a ng-click="swapCar(2)" class="btn btn-link">
+            <span class="glyphicon glyphicon-repeat"></span>
+          </a>
+        </td>
 
-        <td>{{ status[3].carID }}</td>
         <td>
         <select ng-model="car3BtId" ng-change="swapCar(3)">
           <option ng-repeat="x in cars" value="{{x.btid}}">{{x.model}}</option>
         </select>
+        </td>
+        <td>
+          <a ng-click="swapCar(3)" class="btn btn-link">
+            <span class="glyphicon glyphicon-repeat"></span>
+          </a>
         </td>
       </tr>
       <tr>
