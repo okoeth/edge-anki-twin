@@ -1,5 +1,5 @@
 hash: 59a51ffe508e26795e66d39a73f880ba06add776a097b063a3a8e794959371ce
-updated: 2018-01-18T23:31:51.013649131+01:00
+updated: 2018-01-19T01:18:22.005749836+01:00
 imports:
 - name: github.com/davecgh/go-spew
   version: ecdeabc65495df2dec95d7c4a4c3e021903035e5
@@ -16,9 +16,9 @@ imports:
 - name: github.com/golang/snappy
   version: 553a641470496b2327abcac10b36396bd98e45c9
 - name: github.com/gorilla/websocket
-  version: ea4d1f681babbce9545c9c5f3d5194a789c89f5b
+  version: 292fd08b2560ad524ee37396253d71570339a821
 - name: github.com/okoeth/edge-anki-base
-  version: 4d9fd15ff3fbaeafe065840715363a853a85735e
+  version: 67747028351f4e28dc2949173dc48be779d2914d
 - name: github.com/okoeth/muxlogger
   version: 92af94f8c27c62a45001c73b8a9bcc54f6db59ea
 - name: github.com/pierrec/lz4

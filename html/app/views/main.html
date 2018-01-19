@@ -36,28 +36,28 @@ DEALINGS IN THE SOFTWARE.
       <tr>
         <td>Bluetooth ID</td>
 
-        <td>{{ status[0].CarID }}</td>
+        <td>{{ status[0].carID }}</td>
         <td>
         <select ng-model="car0BtId" ng-change="swapCar(0)">
           <option ng-repeat="x in cars" value="{{x.btid}}">{{x.model}}</option>
         </select>
         </td>
 
-        <td>{{ status[1].CarID }}</td>
+        <td>{{ status[1].carID }}</td>
         <td>
         <select ng-model="car1BtId" ng-change="swapCar(1)">
           <option ng-repeat="x in cars" value="{{x.btid}}">{{x.model}}</option>
         </select>
         </td>
 
-        <td>{{ status[2].CarID }}</td>
+        <td>{{ status[2].carID }}</td>
         <td>
         <select ng-model="car2BtId" ng-change="swapCar(2)">
           <option ng-repeat="x in cars" value="{{x.btid}}">{{x.model}}</option>
         </select>
         </td>
 
-        <td>{{ status[3].CarID }}</td>
+        <td>{{ status[3].carID }}</td>
         <td>
         <select ng-model="car3BtId" ng-change="swapCar(3)">
           <option ng-repeat="x in cars" value="{{x.btid}}">{{x.model}}</option>

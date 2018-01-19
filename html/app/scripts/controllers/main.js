@@ -116,7 +116,7 @@ angular.module('htmlApp')
       console.log('INFO: Handling swap bluetooth id for carno '+carNo);
       var command = {
         command: 'swap',
-        param1: ''+$scope["car" + carNo + "BtId"],
+        param1: ''+$scope['car' + carNo + 'BtId'],
         carNo: carNo,
         source: 'ui'
       };
@@ -301,10 +301,10 @@ angular.module('htmlApp')
 		$scope.status = [{},{},{}];
 
     $scope.cars = [
-      {model : "1 Ground Shock", btid:"ec7d32207f95"},
-      {model : "2 Skull", btid : "edef582991e2"},
-      {model : "3 FF 1", btid : "d00a267f9e09"},
-      {model : "4 FF 2", btid : "d4b42cc5cf27"}
+      {model : '1 Ground Shock', btid:'ec7d32207f95'},
+      {model : '2 Skull', btid : 'edef582991e2'},
+      {model : '3 FF 1', btid : 'd00a267f9e09'},
+      {model : '4 FF 2', btid : 'd4b42cc5cf27'}
     ];
 	}]);
 
