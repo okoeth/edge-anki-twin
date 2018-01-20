@@ -27,8 +27,13 @@ import (
 
 	anki "github.com/okoeth/edge-anki-base"
 	"github.com/rs/cors"
+	"github.com/gorilla/websocket"
 	"goji.io"
 	"goji.io/pat"
+	"encoding/base64"
+	"strings"
+	"image"
+	"image/jpeg"
 )
 
 // Logging
@@ -55,7 +60,47 @@ func main() {
 	tc := NewTwinController(track, cmdCh)
 	tc.AddHandlers(mux)
 	mux.Handle(pat.Get("/html/*"), http.FileServer(http.Dir("html/dist/")))
+	mux.HandleFunc(pat.Get("/image"), websocket_handler)
 	corsHandler := cors.Default().Handler(mux)
 	mlog.Printf("INFO: System is ready.\n")
 	http.ListenAndServe("0.0.0.0:8001", corsHandler)
+}
+
+var upgrader = websocket.Upgrader{
+	ReadBufferSize: 0,
+	WriteBufferSize: 1024,
+}
+
+func websocket_handler(w http.ResponseWriter, r *http.Request) {
+	conn, err := upgrader.Upgrade(w, r, nil)
+	if err != nil {
+		mlog.Println(err)
+		return
+	}
+	mlog.Println("Client subscribed")
+
+	for {
+		_, imageData, err := conn.ReadMessage()
+		if err != nil {
+			mlog.Println(err)
+			return
+		}
+
+		//Decode image as jpg
+		mlog.Println("INFO: Received base64 image")
+		reader := base64.NewDecoder(base64.StdEncoding, strings.NewReader(string(imageData)))
+		jpg, _, err := image.Decode(reader)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		//Save image to file
+		imageFile, err := os.OpenFile("html/app/images/capture.jpg", os.O_WRONLY|os.O_CREATE, 0777)
+		if err != nil {
+			panic("Cannot open file")
+		}
+
+		jpeg.Encode(imageFile, jpg, &jpeg.Options{ Quality: 100 })
+	}
+	mlog.Println("Client unsubscribed")
 }

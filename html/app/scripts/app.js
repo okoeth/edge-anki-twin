@@ -39,6 +39,11 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
+      .when('/collisiondetection', {
+        templateUrl: 'views/collisiondetection.html',
+        controller: 'CollisionDetectionCtrl',
+        controllerAs: 'collisiondetection'
+      })
       .otherwise({
         redirectTo: '/'
       });
