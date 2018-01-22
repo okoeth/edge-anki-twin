@@ -27,17 +27,17 @@
  * Controller of the htmlApp
  */
 angular.module('htmlApp')
-  .controller('CollisionDetectionCtrl', ['$scope', '$timeout', function ($scope, $timeout) {
+  .controller('CollisionDetectionCtrl', ['$scope', '$interval', function ($scope, $interval) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
-    var timer = $timeout(function () {
+    var imageTimer = $interval(function () {
       //console.log('INFO: Timer set');
     }, 500);
-    timer.then(function () {
+    imageTimer.then(function () {
       console.log('INFO: Timer for image reload triggered');
       $scope.imageUrl = 'images/capture.jpg?x=' + new Date().getTime();
     });

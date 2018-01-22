@@ -91,12 +91,13 @@ func websocket_handler(w http.ResponseWriter, r *http.Request) {
 		reader := base64.NewDecoder(base64.StdEncoding, strings.NewReader(string(imageData)))
 		jpg, _, err := image.Decode(reader)
 		if err != nil {
-			log.Fatal(err)
+			mlog.Fatal(err)
 		}
 
 		//Save image to file
-		imageFile, err := os.OpenFile("html/app/images/capture.jpg", os.O_WRONLY|os.O_CREATE, 0777)
+		imageFile, err := os.OpenFile("html/dist/html/images/capture.jpg", os.O_WRONLY|os.O_CREATE, 0777)
 		if err != nil {
+			mlog.Fatal(err)
 			panic("Cannot open file")
 		}
 

@@ -23,5 +23,7 @@ WORKDIR /go/src/edge-anki-twin
 COPY . /go/src/edge-anki-twin
 RUN go test 
 RUN go install 
+USER root
+RUN chmod 777 /go/src/edge-anki-twin/html/dist/html/images
 EXPOSE 8001
 ENTRYPOINT [ "/go/bin/edge-anki-twin"]
