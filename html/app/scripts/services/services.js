@@ -52,6 +52,10 @@ angular.module('htmlApp')
 		MainFactory.postCommand = function (command) {
 			return $http.post(baseURL + '/v1/twin/command', command);
 		};
+
+    MainFactory.getCars = function() {
+      return $http.get('cars.json');
+    };
 		return MainFactory;
 	}]);
 
@@ -67,14 +71,7 @@ angular.module('htmlApp')
 	var MainConfig = {};
 	MainConfig.slowSpeed = 450;
 	MainConfig.highSpeed = 700;
-  MainConfig.cars = [
-    {model : '1 Skull', btid:'ec7d32207f95'},
-    {model : '2 Ground Shock', btid : 'edef582991e2'},
-    {model : '3 FF Truck', btid : 'd00a267f9e09'},
-    {model : '4 FF Mustang', btid : 'd4b42cc5cf27'},
-    {model : '5 Red Supercar', btid: 'f65332e1688c'},
-    {model : '6 Truck', btid: 'df46034abd1b'}
-  ];
+
 	return MainConfig;
 });
 

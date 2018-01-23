@@ -312,7 +312,10 @@ angular.module('htmlApp')
 		$scope.text = 'Start polling';
 		$scope.status = [{},{},{}];
 
-    $scope.cars = MainConfig.cars;
+		MainFactory.getCars().then(function(response) {
+      $scope.cars = response.data;
+    });
+
 
     if(!$scope.poll) {
       $scope.togglePoll();
