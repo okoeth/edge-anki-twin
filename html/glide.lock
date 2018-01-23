@@ -1,0 +1,20 @@
+hash: 59a51ffe508e26795e66d39a73f880ba06add776a097b063a3a8e794959371ce
+updated: 2017-12-17T18:34:01.427976229+01:00
+imports:
+- name: github.com/okoeth/edge-anki-base
+  version: 0532a184cbdca8b48c4640a82e038e134af594c5
+- name: github.com/okoeth/muxlogger
+  version: 92af94f8c27c62a45001c73b8a9bcc54f6db59ea
+- name: github.com/rs/cors
+  version: 7af7a1e09ba336d2ea14b1ce73bf693c6837dbf6
+- name: github.com/Shopify/sarama
+  version: 3b1b38866a79f06deddf0487d5c27ba0697ccd65
+- name: github.com/wvanbergen/kafka
+  version: e2edea948ddfee841ea9a263b32ccca15f7d6c2f
+  subpackages:
+  - consumergroup
+- name: goji.io
+  version: 0d89ff54b2c18c9c4ba530e32496aef902d3c6cd
+  subpackages:
+  - pat
+testImports: []
