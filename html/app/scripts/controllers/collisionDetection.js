@@ -37,5 +37,5 @@ angular.module('htmlApp')
     $interval(function () {
       console.log('INFO: Timer for image reload triggered');
       $scope.imageUrl = 'images/capture_old.jpg?x=' + new Date().getTime();
-    }, 500);
+    }, 1000);
   }]);
