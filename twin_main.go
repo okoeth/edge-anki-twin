@@ -47,17 +47,18 @@ func init() {
 func main() {
 	// Set-up channels for status and commands
 	anki.SetLogger(mlog)
-	cmdCh, statusCh, err := anki.CreateChannels("edge.twin")
+
+	track := anki.CreateTrack()
+	mux := goji.NewMux()
+	cmdCh, statusCh, err := anki.CreateHttpChannels("edge.twin", mux, &track)
 	if err != nil {
 		mlog.Fatalln("FATAL: Could not establish channels: %s", err)
 	}
-	track := anki.CreateTrack()
 
 	// Go and watch the track
 	go watchTrack(track, cmdCh, statusCh)
 
 	// Set-up routes
-	mux := goji.NewMux()
 	tc := NewTwinController(track, cmdCh)
 	tc.AddHandlers(mux)
 	mux.Handle(pat.Get("/html/*"), http.FileServer(http.Dir("html/dist/")))
