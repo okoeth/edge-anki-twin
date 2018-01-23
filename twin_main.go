@@ -34,6 +34,7 @@ import (
 	"strings"
 	"image"
 	"image/jpeg"
+	"io/ioutil"
 )
 
 // Logging
@@ -95,13 +96,17 @@ func websocket_handler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		//Save image to file
-		imageFile, err := os.OpenFile("html/dist/html/images/capture.jpg", os.O_WRONLY|os.O_CREATE, 0777)
+		imageFile, err := os.OpenFile("html/dist/html/images/capture_new.jpg", os.O_WRONLY|os.O_CREATE, 0777)
 		if err != nil {
 			mlog.Fatal(err)
 			panic("Cannot open file")
 		}
 
 		jpeg.Encode(imageFile, jpg, &jpeg.Options{ Quality: 100 })
+
+		// Copy the file to avoid reloading a file that is currently written
+		data, err := ioutil.ReadFile("html/dist/html/images/capture_new.jpg")
+		err = ioutil.WriteFile("html/dist/html/images/capture_old.jpg", data, 0644)
 	}
 	mlog.Println("Client unsubscribed")
 }

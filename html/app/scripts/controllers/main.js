@@ -313,6 +313,10 @@ angular.module('htmlApp')
 		$scope.status = [{},{},{}];
 
     $scope.cars = MainConfig.cars;
+
+    if(!$scope.poll) {
+      $scope.togglePoll();
+    }
 	}]);
 
 
