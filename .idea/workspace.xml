@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="df4914c5-0836-4a72-ab89-5452745b3cb5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/html/Gruntfile.js" afterPath="$PROJECT_DIR$/html/Gruntfile.js" />
-      <change beforePath="$PROJECT_DIR$/html/app/cars.json" afterPath="$PROJECT_DIR$/html/app/data/cars.json" />
-      <change beforePath="$PROJECT_DIR$/html/app/scripts/controllers/main.js" afterPath="$PROJECT_DIR$/html/app/scripts/controllers/main.js" />
-      <change beforePath="$PROJECT_DIR$/html/app/scripts/services/services.js" afterPath="$PROJECT_DIR$/html/app/scripts/services/services.js" />
-      <change beforePath="$PROJECT_DIR$/html/app/views/main.html" afterPath="$PROJECT_DIR$/html/app/views/main.html" />
-      <change beforePath="$PROJECT_DIR$/html/dist/html/index.html" afterPath="$PROJECT_DIR$/html/dist/html/index.html" />
-    </list>
+    <list default="true" id="df4914c5-0836-4a72-ab89-5452745b3cb5" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
