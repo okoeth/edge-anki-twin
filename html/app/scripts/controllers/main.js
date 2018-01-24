@@ -187,7 +187,8 @@ angular.module('htmlApp')
 		$scope.changeSpeedStop = function (carNo) {
 			console.log('INFO: Handling changeSpeedStop for carno '+carNo);
 			var command = {
-				command: 'e',
+				command: 's',
+        param1: '0',
 				carNo: carNo,
 				source: 'ui'
 			};

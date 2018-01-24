@@ -54,7 +54,7 @@ angular.module('htmlApp')
 		};
 
     MainFactory.getCars = function() {
-      return $http.get('cars.json');
+      return $http.get('data/cars.json');
     };
 		return MainFactory;
 	}]);
