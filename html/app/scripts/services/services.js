@@ -69,8 +69,8 @@ angular.module('htmlApp')
 angular.module('htmlApp')
 .factory('MainConfig', function () {
 	var MainConfig = {};
-	MainConfig.slowSpeed = 450;
-	MainConfig.highSpeed = 700;
+	MainConfig.slowSpeed = 400;
+	MainConfig.highSpeed = 600;
 
 	return MainConfig;
 });
