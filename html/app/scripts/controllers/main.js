@@ -31,6 +31,8 @@ function refreshLoop($scope, $timeout, MainFactory) {
 			.then(
 			function (response) { // ok
 				$scope.status = response.data;
+
+				//Bind selected car model
 				if(!$scope.car0BtId) {
           $scope.car0BtId = $scope.status[0].carID;
         }
@@ -43,6 +45,13 @@ function refreshLoop($scope, $timeout, MainFactory) {
         if(!$scope.car3BtId) {
           $scope.car3BtId = $scope.status[3].carID;
         }
+
+        //Translate car offset to laneNo
+        $scope.status[0].laneOffset = MainFactory.translateCarOffsetToLane($scope.status[0].laneOffset);
+        $scope.status[1].laneOffset = MainFactory.translateCarOffsetToLane($scope.status[1].laneOffset);
+        $scope.status[2].laneOffset = MainFactory.translateCarOffsetToLane($scope.status[2].laneOffset);
+        $scope.status[3].laneOffset = MainFactory.translateCarOffsetToLane($scope.status[3].laneOffset);
+
 			},
 			function (response) { // nok
 				console.error('ERROR: Request failed: ' + response.statusText);

@@ -56,7 +56,24 @@ angular.module('htmlApp')
     MainFactory.getCars = function() {
       return $http.get('data/cars.json');
     };
-		return MainFactory;
+
+		MainFactory.translateCarOffsetToLane = function(carOffset) {
+		  if (carOffset <= 68 && carOffset >= 66) {
+		    return 1;
+      } else if(carOffset <= 25 && carOffset >= 21) {
+		    return 2;
+      } else if(carOffset <= -21 && carOffset >= -25) {
+		    return 3;
+      } else if(carOffset >= -67 && carOffset <= -66) {
+		    return 4;
+      } else {
+		    return 0;
+      }
+    };
+
+
+    ////////////////
+    return MainFactory;
 	}]);
 
 /**

@@ -85,7 +85,8 @@ DEALINGS IN THE SOFTWARE.
       <tr>
         <td>Car Lane No</td>
         <!-- Car1 -->
-        <td>{{ status[1].laneNo }}</td>
+        <td>{{ status[1].laneNo }} ({{status[1].laneOffset}}) <span ng-if="status[1].laneNo !== status[1].laneOffset"
+                                                                    class=""glyphicon glyphicon-warning-sign></span></td>
         <td>
           <a ng-click="changeLaneLeft(1)" class="btn btn-link">
             <span class="glyphicon glyphicon-circle-arrow-left"></span>
@@ -95,7 +96,8 @@ DEALINGS IN THE SOFTWARE.
           </a>
         </td>
         <!-- Car2 -->
-        <td>{{ status[2].laneNo }}</td>
+        <td>{{ status[2].laneNo }} ({{status[2].laneOffset}}) <span ng-if="status[2].laneNo !== status[2].laneOffset"
+                                                                    class="glyphicon glyphicon-warning-sign"></span</td>
         <td>
           <a ng-click="changeLaneLeft(2)" class="btn btn-link">
             <span class="glyphicon glyphicon-circle-arrow-left"></span>
