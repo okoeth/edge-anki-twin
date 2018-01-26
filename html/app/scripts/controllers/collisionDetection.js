@@ -34,14 +34,9 @@ angular.module('htmlApp')
       'Karma'
     ];
 
-    var img = new Image();
-
-    img.onload = function() {
-      $scope.imageUrl = img.src;
-    };
 
     $interval(function () {
       console.log('INFO: Timer for image reload triggered');
-      img.src = 'images/capture_old.jpg?x=' + new Date().getTime();
+      $scope.imageUrl = 'images/capture_old.jpg?x=' + new Date().getTime();
     }, 200);
   }]);
