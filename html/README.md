@@ -3,7 +3,10 @@ This project is generated with [yo angular generator](https://github.com/yeoman/
 version 0.16.0.
 
 ## Build & development
+One prerequesite is to have compass installed. View the docs at http://compass-style.org/install/
+
 The dependencies are not version controlled, hence install dependencies with the following commands:
+
 ```
 npm install
 bower install

@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="df4914c5-0836-4a72-ab89-5452745b3cb5" name="Default" comment="" />
+    <list default="true" id="df4914c5-0836-4a72-ab89-5452745b3cb5" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/html/README.md" afterPath="$PROJECT_DIR$/html/README.md" />
+      <change beforePath="$PROJECT_DIR$/html/dist/html/index.html" afterPath="$PROJECT_DIR$/html/dist/html/index.html" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,17 +15,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="twin_controller.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/twin_controller.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="68" column="47" lean-forward="true" selection-start-line="68" selection-start-column="47" selection-end-line="68" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="twin_main.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="twin_main.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/twin_main.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="249">
@@ -29,6 +23,19 @@
               <folding>
                 <element signature="e#1109#1340#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/html/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="75">
+                <caret line="5" column="97" lean-forward="false" selection-start-line="5" selection-start-column="97" selection-end-line="5" selection-end-column="97" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -47,7 +54,7 @@
         <entry file="file://$PROJECT_DIR$/vendor/github.com/okoeth/edge-anki-base/base_main.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="400">
-              <caret line="163" column="9" lean-forward="true" selection-start-line="157" selection-start-column="8" selection-end-line="163" selection-end-column="9" />
+              <caret line="163" column="9" lean-forward="false" selection-start-line="157" selection-start-column="8" selection-end-line="163" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -67,7 +74,7 @@
         <entry file="file://$PROJECT_DIR$/html/app/scripts/controllers/config.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="450">
-              <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+              <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -172,6 +179,7 @@
         <option value="$PROJECT_DIR$/html/app/scripts/controllers/collisionDetection.js" />
         <option value="$PROJECT_DIR$/html/app/scripts/services/services.js" />
         <option value="$PROJECT_DIR$/twin_main.go" />
+        <option value="$PROJECT_DIR$/html/README.md" />
       </list>
     </option>
   </component>
@@ -448,12 +456,12 @@
       <workItem from="1516585196297" duration="240000" />
       <workItem from="1516658923094" duration="3374000" />
       <workItem from="1516727344583" duration="13559000" />
-      <workItem from="1516807509222" duration="10019000" />
+      <workItem from="1516807509222" duration="10528000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58518000" />
+    <option name="totallyTimeSpent" value="59027000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -503,14 +511,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/html/app/scripts/controllers/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/twin_controller.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="645">
@@ -784,7 +784,7 @@
     <entry file="file://$PROJECT_DIR$/twin_controller.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="353">
-          <caret line="68" column="47" lean-forward="true" selection-start-line="68" selection-start-column="47" selection-end-line="68" selection-end-column="47" />
+          <caret line="68" column="47" lean-forward="false" selection-start-line="68" selection-start-column="47" selection-end-line="68" selection-end-column="47" />
           <folding />
         </state>
       </provider>
@@ -808,7 +808,7 @@
     <entry file="file://$PROJECT_DIR$/vendor/github.com/okoeth/edge-anki-base/base_main.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
-          <caret line="163" column="9" lean-forward="true" selection-start-line="157" selection-start-column="8" selection-end-line="163" selection-end-column="9" />
+          <caret line="163" column="9" lean-forward="false" selection-start-line="157" selection-start-column="8" selection-end-line="163" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -824,7 +824,7 @@
     <entry file="file://$PROJECT_DIR$/html/app/scripts/controllers/config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
-          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -863,6 +863,17 @@
           <folding>
             <element signature="e#1109#1340#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="75">
+            <caret line="5" column="97" lean-forward="false" selection-start-line="5" selection-start-column="97" selection-end-line="5" selection-end-column="97" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
