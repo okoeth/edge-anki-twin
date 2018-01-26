@@ -39,6 +39,7 @@ import (
 
 // Logging
 var mlog = log.New(os.Stdout, "EDGE-ANKI-TWIN: ", log.Lshortfile|log.LstdFlags)
+var carConfigFile = "cars.json"
 
 func init() {
 	flag.Parse()
@@ -58,10 +59,19 @@ func main() {
 	// Go and watch the track
 	go watchTrack(track, cmdCh, statusCh)
 
+	carConfigFile = os.Getenv("CAR_CONFIG_FILE")
+	if carConfigFile == "" {
+		mlog.Printf("INFO: Using cars.json as default CAR_CONFIG_FILE.")
+		carConfigFile = "cars.json"
+	} else {
+		mlog.Printf("INFO: Using " + carConfigFile + " as CAR_CONFIG_FILE.")
+	}
+
 	// Set-up routes
 	tc := NewTwinController(track, cmdCh)
 	tc.AddHandlers(mux)
 	mux.Handle(pat.Get("/html/*"), http.FileServer(http.Dir("html/dist/")))
+	mux.HandleFunc(pat.Get("/carConfigs"), send_config_file)
 	mux.HandleFunc(pat.Get("/image"), websocket_handler)
 	corsHandler := cors.Default().Handler(mux)
 	mlog.Printf("INFO: System is ready.\n")
@@ -71,6 +81,10 @@ func main() {
 var upgrader = websocket.Upgrader{
 	ReadBufferSize: 0,
 	WriteBufferSize: 1024,
+}
+
+func send_config_file(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, carConfigFile)
 }
 
 func websocket_handler(w http.ResponseWriter, r *http.Request) {
