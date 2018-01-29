@@ -54,7 +54,25 @@ function refreshLoop($scope, $timeout, MainFactory) {
 
 			},
 			function (response) { // nok
-				console.error('ERROR: Request failed: ' + response.statusText);
+				console.error('ERROR: getStatus request failed: ' + response.statusText);
+
+				// DEBUG: use some mock data if the back-end is missing
+        $scope.status[1].carID = 'edef582991e2';
+        $scope.status[2].carID = 'fb8f2bab1e4b';
+        $scope.car1BtId = $scope.status[1].carID;
+        $scope.car2BtId = $scope.status[2].carID;
+        $scope.status[1].laneOffset = '1';
+        $scope.status[2].laneOffset = '2';
+        $scope.status[1].carSpeed = '45';
+        $scope.status[2].carSpeed = '46';
+        $scope.status[1].laneNo = '1';
+        $scope.status[2].laneNo = '2';
+        $scope.status[1].carBatteryLevel = '3801';
+        $scope.status[2].carBatteryLevel = '3902';
+        $scope.status[1].posTileNo = '1';
+        $scope.status[2].posTileNo = '2';
+        $scope.status[1].posTileType = 'STRAIGHT';
+        $scope.status[2].posTileType = 'CURVE';
 			}
 			);
 		if ($scope.poll) {
@@ -322,10 +340,42 @@ angular.module('htmlApp')
 		$scope.text = 'Start polling';
 		$scope.status = [{},{},{}];
 
-		MainFactory.getCars().then(function(response) {
-      $scope.cars = response.data;
-    });
+		MainFactory.getCars()
+      .then(
+        function(response) {  // ok
+          $scope.cars = response.data;
+        },
+        function (response) { // nok
+          console.error('ERROR: getCars request failed: ' + response.statusText);
 
+          // DEBUG: use mock data for cars if the back-end is missing
+          $scope.cars = [
+              {'model': '0 ROUNDSHOCK (BLUE)', 'btid': 'edef582991e2'},
+              {'model': '1 SKULL (BLACK)', 'btid': 'fb8f2bab1e4b'},
+              {'model': '2 NUKE (GREEN/BLACK)', 'btid': 'fb2c43ca4073'},
+              {'model': '3 NUKE (GREEN/BLACK)', 'btid': 'f458e8027a27'},
+              {'model': '4 BIGBANG (GREEN)', 'btid': 'c3f8b8e6ba79'},
+              {'model': '5 BIGBANG (GREEN)', 'btid': 'd1ffcbf22347'},
+              {'model': '6 THERMO (RED)', 'btid': 'e07c5f42d543'},
+              {'model': '7 THERMO (RED)', 'btid': 'e67a69585ca4'},
+              {'model': '8 GUARDIAN (BLUE/SILVER)', 'btid': 'd4435b819516'},
+              {'model': '9 GUARDIAN (BLUE/SILVER)', 'btid': 'e58aa933a106'},
+              {'model': '10 GROUNDSHOCK (BLUE)', 'btid': 'f4f96680d1f2'},
+              {'model': '11 SKULL (BLACK)', 'btid': 'ec7d32207f95'},
+              {'model': '12 NUKE (BREEN/BLACK)', 'btid': 'f094f611c8e5'},
+              {'model': '13 NUKE (BREEN/BLACK)', 'btid': 'd72c9a461b87'},
+              {'model': '14 BIGBANG (GREEN)', 'btid': 'ea90f84f2804'},
+              {'model': '15 BIGBANG (GREEN)', 'btid': 'f30da22227b1'},
+              {'model': '16 THERMO (RED)', 'btid': 'd00a4e9b93d3'},
+              {'model': '17 THERMO (RED)', 'btid': 'f65332e1688c'},
+              {'model': '18 GURDIAN (BLUE/SILVER)', 'btid': 'eee9ed31eac1'},
+              {'model': '19 GURDIAN (BLUE/SILVER)', 'btid': 'd3c74657a020'},
+              {'model': '20 MUSCLE (GRAY)', 'btid': 'd4b42cc5cf27'},
+              {'model': '21 PICKUPTRUCK (GRAY)', 'btid': 'd00a267f9e09'},
+              {'model': 'XX FREEWHEEL (GREEN/SILVER)', 'btid': 'df46034abd1b'}
+          ];
+        }
+      );
 
     if(!$scope.poll) {
       $scope.togglePoll();
