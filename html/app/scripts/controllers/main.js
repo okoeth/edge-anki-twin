@@ -21,8 +21,8 @@
 
 if (startsWithCharAt(window.location.href, 'http://localhost:9000')) {
   // TODO: make sure to set url to a back-end that is working, while developing front-end
-  // baseURL = 'http://localhost:8001';
-  baseURL = 'http://10.2.2.207:8001';
+  //baseURL = 'http://10.2.2.207:8001';
+  baseURL = 'http://localhost:8001';
 	console.log('INFO: Using hard coded dev server at: ' + baseURL);
 }
 
