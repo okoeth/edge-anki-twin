@@ -19,6 +19,13 @@
 
 'use strict';
 
+if (startsWithCharAt(window.location.href, 'http://localhost:9000')) {
+  // TODO: make sure to set url to a back-end that is working, while developing front-end
+  // baseURL = 'http://localhost:8001';
+  baseURL = 'http://10.2.2.207:8001';
+	console.log('INFO: Using hard coded dev server at: ' + baseURL);
+}
+
 var timer;
 
 function refreshLoop($scope, $timeout, MainFactory) {
@@ -53,7 +60,16 @@ function refreshLoop($scope, $timeout, MainFactory) {
         $scope.status[3].laneOffset = MainFactory.translateCarOffsetToLane($scope.status[3].laneOffset);
 
         console.log('INFO: Timer for image reload triggered');
-        $scope.imageUrl = 'images/capture_old.jpg?x=' + new Date().getTime();
+        if (baseURL) {
+          $scope.imageUrl = baseURL + '/html/images/capture_old.jpg?x=' + new Date().getTime();
+        }
+        else {
+          $scope.imageUrl = 'images/capture_old.jpg?x=' + new Date().getTime();
+        }
+
+        // update the car images
+        $scope.car1img = '/images/' + $scope.findImgFileForId($scope.car1BtId);
+        $scope.car2img = '/images/' + $scope.findImgFileForId($scope.car2BtId);
 			},
 			function (response) { // nok
 				console.error('ERROR: getStatus request failed: ' + response.statusText);
@@ -76,6 +92,10 @@ function refreshLoop($scope, $timeout, MainFactory) {
         $scope.status[1].posTileType = 'STRAIGHT';
         $scope.status[2].posTileType = 'CURVE';
         $scope.imageUrl = 'images/golang.png';
+
+        $scope.car1img = '/images/' + $scope.cars[0].img;
+        $scope.car2img = '/images/' + $scope.cars[1].img;
+        $scope.imageUrl = '/images/capture.jpg';
 			}
 			);
 		if ($scope.poll) {
@@ -85,6 +105,7 @@ function refreshLoop($scope, $timeout, MainFactory) {
 		console.error('ERROR: Timer rejected!');
 	});
 }
+
 
 /**
  * @ngdoc function
@@ -331,6 +352,42 @@ angular.module('htmlApp')
 				}
 				);
 		};
+
+		$scope.imgFileForId = [
+      {'model': '0 GROUNDSHOCK (BLUE)', 'btid': 'edef582991e2', 'img': 'groundshock.jpg'},
+      {'model': '1 SKULL (BLACK)', 'btid': 'fb8f2bab1e4b', 'img': 'skull.jpg'},
+      {'model': '2 NUKE (GREEN/BLACK)', 'btid': 'fb2c43ca4073', 'img': 'nuke.jpg'},
+      {'model': '3 NUKE (GREEN/BLACK)', 'btid': 'f458e8027a27', 'img': 'nuke.jpg'},
+      {'model': '4 BIGBANG (GREEN)', 'btid': 'c3f8b8e6ba79', 'img': 'bigbang.jpg'},
+      {'model': '5 BIGBANG (GREEN)', 'btid': 'd1ffcbf22347', 'img': 'bigbang.jpg'},
+      {'model': '6 THERMO (RED)', 'btid': 'e07c5f42d543', 'img': 'thermo.jpg'},
+      {'model': '7 THERMO (RED)', 'btid': 'e67a69585ca4', 'img': 'thermo.jpg'},
+      {'model': '8 GUARDIAN (BLUE/SILVER)', 'btid': 'd4435b819516', 'img': 'guardian.jpg'},
+      {'model': '9 GUARDIAN (BLUE/SILVER)', 'btid': 'e58aa933a106', 'img': 'guardian.jpg'},
+      {'model': '10 GROUNDSHOCK (BLUE)', 'btid': 'f4f96680d1f2', 'img': 'groundshock.jpg'},
+      {'model': '11 SKULL (BLACK)', 'btid': 'ec7d32207f95', 'img': 'skull.jpg'},
+      {'model': '12 NUKE (GREEN/BLACK)', 'btid': 'f094f611c8e5', 'img': 'nuke.jpg'},
+      {'model': '13 NUKE (GREEN/BLACK)', 'btid': 'd72c9a461b87', 'img': 'nuke.jpg'},
+      {'model': '14 BIGBANG (GREEN)', 'btid': 'ea90f84f2804', 'img': 'bigbang.jpg'},
+      {'model': '15 BIGBANG (GREEN)', 'btid': 'f30da22227b1', 'img': 'bigbang.jpg'},
+      {'model': '16 THERMO (RED)', 'btid': 'd00a4e9b93d3', 'img': 'thermo.jpg'},
+      {'model': '17 THERMO (RED)', 'btid': 'f65332e1688c', 'img': 'thermo.jpg'},
+      {'model': '18 GUARDIAN (BLUE/SILVER)', 'btid': 'eee9ed31eac1', 'img': 'guardian.jpg'},
+      {'model': '19 GUARDIAN (BLUE/SILVER)', 'btid': 'd3c74657a020', 'img': 'guardian.jpg'},
+      {'model': '20 MUSCLE (GRAY)', 'btid': 'd4b42cc5cf27', 'img': 'muscle.jpg'},
+      {'model': '21 PICKUPTRUCK (GRAY)', 'btid': 'd00a267f9e09', 'img': 'pickuptruck.jpg'},
+      {'model': 'XX FREEWHEEL (GREEN/SILVER)', 'btid': 'df46034abd1b', 'img': 'freewheel.jpg'}
+    ];
+
+		// figure out which image file to use for a car, given the bluetooth id (or use a default)
+    $scope.findImgFileForId = function(btid) {
+      for (var i = 0; i < $scope.imgFileForId.length; i++) {
+        if ($scope.imgFileForId[i].btid === btid) {
+          return $scope.imgFileForId[i].img;
+        }
+      }
+      return $scope.imgFileForId[0].img;
+    };
 
 		// Initialise
 		$scope.lastUpdate = 'N/A';
