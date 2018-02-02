@@ -1,4 +1,4 @@
-# Agular Frontend for mwc-twin Component
+# Angular Frontend for mwc-twin Component
 This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
 version 0.16.0.
 
