@@ -377,7 +377,7 @@ angular.module('htmlApp')
 				);
 		};
 
-		$scope.imgFilePrefix = '/images/';
+		$scope.imgFilePrefix = 'images/';
 
 		$scope.imgFileForId = [
       {'model': '0 GROUNDSHOCK (BLUE)', 'btid': 'edef582991e2', 'img': 'groundshock.jpg'},
