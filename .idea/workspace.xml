@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="df4914c5-0836-4a72-ab89-5452745b3cb5" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/html/asset_sources/battery-icon.pxm" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/html/asset_sources/lane.pxm" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/html/asset_sources/speedometer.pxm" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/html/asset_sources/tile-number.pxm" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/html/app/images/crossing.jpg" afterPath="$PROJECT_DIR$/html/app/images/crossing.jpg" />
-      <change beforePath="$PROJECT_DIR$/html/app/images/curve.jpg" afterPath="$PROJECT_DIR$/html/app/images/curve.jpg" />
-      <change beforePath="$PROJECT_DIR$/html/app/images/straight.jpg" afterPath="$PROJECT_DIR$/html/app/images/straight.jpg" />
       <change beforePath="$PROJECT_DIR$/html/app/styles/main.scss" afterPath="$PROJECT_DIR$/html/app/styles/main.scss" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/shelf/" />
@@ -25,8 +18,8 @@
       <file leaf-file-name="main.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/html/app/styles/main.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2055">
-              <caret line="192" column="20" lean-forward="true" selection-start-line="192" selection-start-column="20" selection-end-line="192" selection-end-column="20" />
+            <state relative-caret-position="243">
+              <caret line="124" column="0" lean-forward="false" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -124,8 +117,8 @@
         <option value="$PROJECT_DIR$/html/Gruntfile.js" />
         <option value="$PROJECT_DIR$/twin_main.go" />
         <option value="$PROJECT_DIR$/html/app/scripts/controllers/main.js" />
-        <option value="$PROJECT_DIR$/html/app/styles/main.scss" />
         <option value="$PROJECT_DIR$/html/app/views/main.html" />
+        <option value="$PROJECT_DIR$/html/app/styles/main.scss" />
       </list>
     </option>
   </component>
@@ -488,11 +481,18 @@
       <option name="project" value="LOCAL" />
       <updated>1517602523997</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="trimmed tile images, added pixelmater image asset files, smoothed out the table cell heights in car controls">
+      <created>1517608746589</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1517608746589</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68305000" />
+    <option name="totallyTimeSpent" value="68636000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="47" y="23" width="1393" height="877" extended-state="6" />
@@ -585,7 +585,8 @@
     <MESSAGE value="added speedometer icon as a wrapper around the speed, in car display tables" />
     <MESSAGE value="added tile number icon as a wrapper around the tile number, in car display tables" />
     <MESSAGE value="added lane icon as a wrapper around the lane numbers, in car display tables" />
-    <option name="LAST_COMMIT_MESSAGE" value="added lane icon as a wrapper around the lane numbers, in car display tables" />
+    <MESSAGE value="trimmed tile images, added pixelmater image asset files, smoothed out the table cell heights in car controls" />
+    <option name="LAST_COMMIT_MESSAGE" value="trimmed tile images, added pixelmater image asset files, smoothed out the table cell heights in car controls" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -923,8 +924,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/html/app/styles/main.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2055">
-          <caret line="192" column="20" lean-forward="true" selection-start-line="192" selection-start-column="20" selection-end-line="192" selection-end-column="20" />
+        <state relative-caret-position="243">
+          <caret line="124" column="0" lean-forward="false" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
           <folding />
         </state>
       </provider>
