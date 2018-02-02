@@ -135,6 +135,12 @@ function refreshLoop($scope, $timeout, MainFactory) {
 angular.module('htmlApp')
 	.controller('MainCtrl', ['$scope', '$timeout', 'MainFactory', 'MainConfig',
 		function ($scope, $timeout, MainFactory, MainConfig) {
+    // required by the test framework, if you remove this you must also remove the test controller for main.js
+    this.awesomeThings = [
+      'HTML5 Boilerplate',
+      'AngularJS',
+      'Karma'
+    ];
 
 		// Handler function for togging of status polling
 		$scope.togglePoll = function () {
