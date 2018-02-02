@@ -99,8 +99,8 @@ function refreshLoop($scope, $timeout, MainFactory) {
         $scope.car2BtId = $scope.status[2].carID;
         $scope.status[1].laneOffset = '1';
         $scope.status[2].laneOffset = '2';
-        $scope.status[1].carSpeed = '45';
-        $scope.status[2].carSpeed = '46';
+        $scope.status[1].carSpeed = '450';
+        $scope.status[2].carSpeed = '460';
         $scope.status[1].laneNo = '1';
         $scope.status[2].laneNo = '2';
         $scope.status[1].carBatteryLevel = '3801';
