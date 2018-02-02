@@ -19,12 +19,26 @@
 
 'use strict';
 
+// TODO: this code is duplicated in services.js, find a way to combine them into one place
+console.log('Initialise services at: '+window.location.href);
+var baseURL = '';
+
+function startsWithCharAt(string, pattern) {
+  for (var i = 0, length = pattern.length; i < length; i += 1) {
+    if (pattern.charAt(i) !== string.charAt(i)) {
+      return false;
+    }
+  }
+  return true;
+}
+
 if (startsWithCharAt(window.location.href, 'http://localhost:9000')) {
   // TODO: make sure to set url to a back-end that is working, while developing front-end
   //baseURL = 'http://10.2.2.207:8001';
   baseURL = 'http://localhost:8001';
 	console.log('INFO: Using hard coded dev server at: ' + baseURL);
 }
+// TODO: end of duplicated code
 
 var timer;
 
@@ -70,6 +84,10 @@ function refreshLoop($scope, $timeout, MainFactory) {
         // update the car images
         $scope.car1img = $scope.findImgFileForId($scope.car1BtId);
         $scope.car2img = $scope.findImgFileForId($scope.car2BtId);
+
+        // update the tile images
+        $scope.car1tileimg = $scope.findImgFileForTileType($scope.status[1].posTileType);
+        $scope.car2tileimg = $scope.findImgFileForTileType($scope.status[2].posTileType);
 			},
 			function (response) { // nok
 				console.error('ERROR: getStatus request failed: ' + response.statusText);
@@ -93,6 +111,8 @@ function refreshLoop($scope, $timeout, MainFactory) {
         $scope.status[2].posTileType = 'CURVE';
         $scope.car1img = $scope.findImgFileForId($scope.status[1].carID);
         $scope.car2img = $scope.findImgFileForId($scope.status[2].carID);
+        $scope.car1tileimg = $scope.findImgFileForTileType($scope.status[1].posTileType);
+        $scope.car2tileimg = $scope.findImgFileForTileType($scope.status[2].posTileType);
         $scope.imageUrl = '/images/capture.jpg';
 			}
 			);
@@ -351,6 +371,8 @@ angular.module('htmlApp')
 				);
 		};
 
+		$scope.imgFilePrefix = '/images/';
+
 		$scope.imgFileForId = [
       {'model': '0 GROUNDSHOCK (BLUE)', 'btid': 'edef582991e2', 'img': 'groundshock.jpg'},
       {'model': '1 SKULL (BLACK)', 'btid': 'fb8f2bab1e4b', 'img': 'skull.jpg'},
@@ -378,24 +400,37 @@ angular.module('htmlApp')
     ];
 
     $scope.findImgFileForId = function(btid) {
-      var prefix = '/images/';
-
       // try first to see if the image file is named in the cars json from the back-end
       for (var i1 = 0; i1 < $scope.cars.length; i1++) {
         if ($scope.cars[i1].btid === btid && $scope.cars[i1].img) {
-          return prefix + $scope.cars[i1].img;
+          return $scope.imgFilePrefix + $scope.cars[i1].img;
         }
       }
 
       // fall back to the built-in list for an image file to use for a car, given the bluetooth id
       for (var i2 = 0; i2 < $scope.imgFileForId.length; i2++) {
         if ($scope.imgFileForId[i2].btid === btid) {
-          return prefix + $scope.imgFileForId[i2].img;
+          return $scope.imgFilePrefix + $scope.imgFileForId[i2].img;
         }
       }
 
       // finally, use a default if there is no other choice
-      return prefix + $scope.imgFileForId[0].img;
+      return $scope.imgFilePrefix + $scope.imgFileForId[0].img;
+    };
+
+    $scope.imgFileForTileType = [
+      {'type': 'STRAIGHT', 'img': 'straight.jpg'},
+      {'type': 'CURVE', 'img': 'curve.jpg'},
+      {'type': 'CROSSING', 'img': 'crossing.jpg'}
+    ];
+
+    $scope.findImgFileForTileType = function(tileType) {
+      for (var i3 = 0; i3 < $scope.imgFileForTileType.length; i3++) {
+        if ($scope.imgFileForTileType[i3].type === tileType) {
+          return $scope.imgFilePrefix + $scope.imgFileForTileType[i3].img;
+        }
+      }
+      return $scope.imgFilePrefix + $scope.imgFileForTileType[0].img;
     };
 
 		// Initialise
