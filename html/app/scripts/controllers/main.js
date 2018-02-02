@@ -19,6 +19,27 @@
 
 'use strict';
 
+// TODO: this code is duplicated in services.js, find a way to combine them into one place
+console.log('Initialise services at: '+window.location.href);
+var baseURL = '';
+
+function startsWithCharAt(string, pattern) {
+  for (var i = 0, length = pattern.length; i < length; i += 1) {
+    if (pattern.charAt(i) !== string.charAt(i)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+if (startsWithCharAt(window.location.href, 'http://localhost:9000')) {
+  // TODO: make sure to set url to a back-end that is working, while developing front-end
+  //baseURL = 'http://10.2.2.207:8001';
+  baseURL = 'http://localhost:8001';
+	console.log('INFO: Using hard coded dev server at: ' + baseURL);
+}
+// TODO: end of duplicated code
+
 var timer;
 
 function refreshLoop($scope, $timeout, MainFactory) {
@@ -52,9 +73,47 @@ function refreshLoop($scope, $timeout, MainFactory) {
         $scope.status[2].laneOffset = MainFactory.translateCarOffsetToLane($scope.status[2].laneOffset);
         $scope.status[3].laneOffset = MainFactory.translateCarOffsetToLane($scope.status[3].laneOffset);
 
+        console.log('INFO: Timer for image reload triggered');
+        if (baseURL) {
+          $scope.imageUrl = baseURL + '/html/images/capture_old.jpg?x=' + new Date().getTime();
+        }
+        else {
+          $scope.imageUrl = 'images/capture_old.jpg?x=' + new Date().getTime();
+        }
+
+        // update the car images
+        $scope.car1img = $scope.findImgFileForId($scope.car1BtId);
+        $scope.car2img = $scope.findImgFileForId($scope.car2BtId);
+
+        // update the tile images
+        $scope.car1tileimg = $scope.findImgFileForTileType($scope.status[1].posTileType);
+        $scope.car2tileimg = $scope.findImgFileForTileType($scope.status[2].posTileType);
 			},
 			function (response) { // nok
-				console.error('ERROR: Request failed: ' + response.statusText);
+				console.error('ERROR: getStatus request failed: ' + response.statusText);
+
+				// DEBUG: use some mock data if the back-end is missing
+        $scope.status[1].carID = 'fb8f2bab1e4b';
+        $scope.status[2].carID = 'fb2c43ca4073';
+        $scope.car1BtId = $scope.status[1].carID;
+        $scope.car2BtId = $scope.status[2].carID;
+        $scope.status[1].laneOffset = '1';
+        $scope.status[2].laneOffset = '2';
+        $scope.status[1].carSpeed = '45';
+        $scope.status[2].carSpeed = '46';
+        $scope.status[1].laneNo = '1';
+        $scope.status[2].laneNo = '2';
+        $scope.status[1].carBatteryLevel = '3801';
+        $scope.status[2].carBatteryLevel = '3902';
+        $scope.status[1].posTileNo = '1';
+        $scope.status[2].posTileNo = '2';
+        $scope.status[1].posTileType = 'STRAIGHT';
+        $scope.status[2].posTileType = 'CURVE';
+        $scope.car1img = $scope.findImgFileForId($scope.status[1].carID);
+        $scope.car2img = $scope.findImgFileForId($scope.status[2].carID);
+        $scope.car1tileimg = $scope.findImgFileForTileType($scope.status[1].posTileType);
+        $scope.car2tileimg = $scope.findImgFileForTileType($scope.status[2].posTileType);
+        $scope.imageUrl = '/images/capture.jpg';
 			}
 			);
 		if ($scope.poll) {
@@ -64,6 +123,7 @@ function refreshLoop($scope, $timeout, MainFactory) {
 		console.error('ERROR: Timer rejected!');
 	});
 }
+
 
 /**
  * @ngdoc function
@@ -75,11 +135,6 @@ function refreshLoop($scope, $timeout, MainFactory) {
 angular.module('htmlApp')
 	.controller('MainCtrl', ['$scope', '$timeout', 'MainFactory', 'MainConfig',
 		function ($scope, $timeout, MainFactory, MainConfig) {
-			this.awesomeThings = [
-				'HTML5 Boilerplate',
-				'AngularJS',
-				'Karma'
-			];
 
 		// Handler function for togging of status polling
 		$scope.togglePoll = function () {
@@ -316,20 +371,115 @@ angular.module('htmlApp')
 				);
 		};
 
+		$scope.imgFilePrefix = '/images/';
+
+		$scope.imgFileForId = [
+      {'model': '0 GROUNDSHOCK (BLUE)', 'btid': 'edef582991e2', 'img': 'groundshock.jpg'},
+      {'model': '1 SKULL (BLACK)', 'btid': 'fb8f2bab1e4b', 'img': 'skull.jpg'},
+      {'model': '2 NUKE (GREEN/BLACK)', 'btid': 'fb2c43ca4073', 'img': 'nuke.jpg'},
+      {'model': '3 NUKE (GREEN/BLACK)', 'btid': 'f458e8027a27', 'img': 'nuke.jpg'},
+      {'model': '4 BIGBANG (GREEN)', 'btid': 'c3f8b8e6ba79', 'img': 'bigbang.jpg'},
+      {'model': '5 BIGBANG (GREEN)', 'btid': 'd1ffcbf22347', 'img': 'bigbang.jpg'},
+      {'model': '6 THERMO (RED)', 'btid': 'e07c5f42d543', 'img': 'thermo.jpg'},
+      {'model': '7 THERMO (RED)', 'btid': 'e67a69585ca4', 'img': 'thermo.jpg'},
+      {'model': '8 GUARDIAN (BLUE/SILVER)', 'btid': 'd4435b819516', 'img': 'guardian.jpg'},
+      {'model': '9 GUARDIAN (BLUE/SILVER)', 'btid': 'e58aa933a106', 'img': 'guardian.jpg'},
+      {'model': '10 GROUNDSHOCK (BLUE)', 'btid': 'f4f96680d1f2', 'img': 'groundshock.jpg'},
+      {'model': '11 SKULL (BLACK)', 'btid': 'ec7d32207f95', 'img': 'skull.jpg'},
+      {'model': '12 NUKE (GREEN/BLACK)', 'btid': 'f094f611c8e5', 'img': 'nuke.jpg'},
+      {'model': '13 NUKE (GREEN/BLACK)', 'btid': 'd72c9a461b87', 'img': 'nuke.jpg'},
+      {'model': '14 BIGBANG (GREEN)', 'btid': 'ea90f84f2804', 'img': 'bigbang.jpg'},
+      {'model': '15 BIGBANG (GREEN)', 'btid': 'f30da22227b1', 'img': 'bigbang.jpg'},
+      {'model': '16 THERMO (RED)', 'btid': 'd00a4e9b93d3', 'img': 'thermo.jpg'},
+      {'model': '17 THERMO (RED)', 'btid': 'f65332e1688c', 'img': 'thermo.jpg'},
+      {'model': '18 GUARDIAN (BLUE/SILVER)', 'btid': 'eee9ed31eac1', 'img': 'guardian.jpg'},
+      {'model': '19 GUARDIAN (BLUE/SILVER)', 'btid': 'd3c74657a020', 'img': 'guardian.jpg'},
+      {'model': '20 MUSCLE (GRAY)', 'btid': 'd4b42cc5cf27', 'img': 'muscle.jpg'},
+      {'model': '21 PICKUPTRUCK (GRAY)', 'btid': 'd00a267f9e09', 'img': 'pickuptruck.jpg'},
+      {'model': 'XX FREEWHEEL (GREEN/SILVER)', 'btid': 'df46034abd1b', 'img': 'freewheel.jpg'},
+      {'model': '1 GROUNDSHOCK (BLUE)', 'btid': 'da817193ce9c', 'img': 'groundshock.jpg'},
+      {'model': '2 SKULL (BLACK)', 'btid': 'e6d3ac9af37e', 'img': 'skull.jpg'}
+    ];
+
+    $scope.findImgFileForId = function(btid) {
+      // try first to see if the image file is named in the cars json from the back-end
+      for (var i1 = 0; i1 < $scope.cars.length; i1++) {
+        if ($scope.cars[i1].btid === btid && $scope.cars[i1].img) {
+          return $scope.imgFilePrefix + $scope.cars[i1].img;
+        }
+      }
+
+      // fall back to the built-in list for an image file to use for a car, given the bluetooth id
+      for (var i2 = 0; i2 < $scope.imgFileForId.length; i2++) {
+        if ($scope.imgFileForId[i2].btid === btid) {
+          return $scope.imgFilePrefix + $scope.imgFileForId[i2].img;
+        }
+      }
+
+      // finally, use a default if there is no other choice
+      return $scope.imgFilePrefix + $scope.imgFileForId[0].img;
+    };
+
+    $scope.imgFileForTileType = [
+      {'type': 'STRAIGHT', 'img': 'straight.jpg'},
+      {'type': 'CURVE', 'img': 'curve.jpg'},
+      {'type': 'CROSSING', 'img': 'crossing.jpg'}
+    ];
+
+    $scope.findImgFileForTileType = function(tileType) {
+      for (var i3 = 0; i3 < $scope.imgFileForTileType.length; i3++) {
+        if ($scope.imgFileForTileType[i3].type === tileType) {
+          return $scope.imgFilePrefix + $scope.imgFileForTileType[i3].img;
+        }
+      }
+      return $scope.imgFilePrefix + $scope.imgFileForTileType[0].img;
+    };
+
 		// Initialise
 		$scope.lastUpdate = 'N/A';
 		$scope.poll = false;
 		$scope.text = 'Start polling';
 		$scope.status = [{},{},{}];
 
-		MainFactory.getCars().then(function(response) {
-      $scope.cars = response.data;
-    });
+		MainFactory.getCars()
+      .then(
+        function(response) {  // ok
+          $scope.cars = response.data;
+        },
+        function (response) { // nok
+          console.error('ERROR: getCars request failed: ' + response.statusText);
 
+          // DEBUG: use mock data for cars if the back-end is missing
+          $scope.cars = [
+            {'model': '0 GROUNDSHOCK (BLUE)', 'btid': 'edef582991e2', 'img': 'groundshock.jpg'},
+            {'model': '1 SKULL (BLACK)', 'btid': 'fb8f2bab1e4b', 'img': 'skull.jpg'},
+            {'model': '2 NUKE (GREEN/BLACK)', 'btid': 'fb2c43ca4073', 'img': 'nuke.jpg'},
+            {'model': '3 NUKE (GREEN/BLACK)', 'btid': 'f458e8027a27', 'img': 'nuke.jpg'},
+            {'model': '4 BIGBANG (GREEN)', 'btid': 'c3f8b8e6ba79', 'img': 'bigbang.jpg'},
+            {'model': '5 BIGBANG (GREEN)', 'btid': 'd1ffcbf22347', 'img': 'bigbang.jpg'},
+            {'model': '6 THERMO (RED)', 'btid': 'e07c5f42d543', 'img': 'thermo.jpg'},
+            {'model': '7 THERMO (RED)', 'btid': 'e67a69585ca4', 'img': 'thermo.jpg'},
+            {'model': '8 GUARDIAN (BLUE/SILVER)', 'btid': 'd4435b819516', 'img': 'guardian.jpg'},
+            {'model': '9 GUARDIAN (BLUE/SILVER)', 'btid': 'e58aa933a106', 'img': 'guardian.jpg'},
+            {'model': '10 GROUNDSHOCK (BLUE)', 'btid': 'f4f96680d1f2', 'img': 'groundshock.jpg'},
+            {'model': '11 SKULL (BLACK)', 'btid': 'ec7d32207f95', 'img': 'skull.jpg'},
+            {'model': '12 NUKE (GREEN/BLACK)', 'btid': 'f094f611c8e5', 'img': 'nuke.jpg'},
+            {'model': '13 NUKE (GREEN/BLACK)', 'btid': 'd72c9a461b87', 'img': 'nuke.jpg'},
+            {'model': '14 BIGBANG (GREEN)', 'btid': 'ea90f84f2804', 'img': 'bigbang.jpg'},
+            {'model': '15 BIGBANG (GREEN)', 'btid': 'f30da22227b1', 'img': 'bigbang.jpg'},
+            {'model': '16 THERMO (RED)', 'btid': 'd00a4e9b93d3', 'img': 'thermo.jpg'},
+            {'model': '17 THERMO (RED)', 'btid': 'f65332e1688c', 'img': 'thermo.jpg'},
+            {'model': '18 GUARDIAN (BLUE/SILVER)', 'btid': 'eee9ed31eac1', 'img': 'guardian.jpg'},
+            {'model': '19 GUARDIAN (BLUE/SILVER)', 'btid': 'd3c74657a020', 'img': 'guardian.jpg'},
+            {'model': '20 MUSCLE (GRAY)', 'btid': 'd4b42cc5cf27', 'img': 'muscle.jpg'},
+            {'model': '21 PICKUPTRUCK (GRAY)', 'btid': 'd00a267f9e09', 'img': 'pickuptruck.jpg'},
+            {'model': 'XX FREEWHEEL (GREEN/SILVER)', 'btid': 'df46034abd1b', 'img': 'freewheel.jpg'}
+          ];
+        }
+      );
 
     if(!$scope.poll) {
       $scope.togglePoll();
     }
-	}]);
 
-
+}]);
