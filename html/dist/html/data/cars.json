@@ -1,0 +1,12 @@
+[
+  { "model" : "1 Skull", "btid":"ec7d32207f95"},
+  {"model" : "2 Ground Shock", "btid" : "edef582991e2"},
+  {"model" : "3 FF Truck", "btid" : "d00a267f9e09"},
+  {"model" : "4 FF Mustang", "btid" : "d4b42cc5cf27"},
+  {"model" : "5 Red Supercar", "btid": "f65332e1688c"},
+  {"model" : "6 Truck", "btid": "df46034abd1b"},
+  {"model" : "13 Green nuke", "btid": "d72c9a461b87"},
+  {"model" : "16 Red Thermo", "btid": "d00a4e9b93d3"},
+  {"model" : "19 Blue Guardian", "btid": "d3c74657a020"}  
+  
+]

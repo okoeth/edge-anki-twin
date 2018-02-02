@@ -19,203 +19,153 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 DEALINGS IN THE SOFTWARE.
 -->
 
-<div>
-  <p>
-    <table class="table table-striped">
-      <tr>
-        <th>Sensor</th>
-        <th colspan="2">Car 1</th>
-        <th colspan="2">Car 2</th>
-      </tr>
-      <tr>
-        <td>Bluetooth ID</td>
+<div class="top-half">
+  <div class="car-img-container">
+    <div class="enclosed">
+      <img ng-src="{{ car1img }}">
+    </div>
+  </div>
+  <div class="collision-img-container">
+    <div class="enclosed">
+      <img ng-src="{{ imageUrl }}">
+    </div>
+  </div>
+  <div class="car-img-container">
+    <div class="enclosed">
+      <img ng-src="{{ car2img }}">
+    </div>
+  </div>
+  <br style="clear: left" />
+</div>
 
-        <td>
-        <select ng-model="car1BtId" ng-change="swapCar(1)">
-          <option ng-repeat="x in cars" value="{{x.btid}}">{{x.model}}</option>
-        </select>
-        </td>
-        <td>
-          <a ng-click="swapCar(1)" class="btn btn-link">
-            <span class="glyphicon glyphicon-repeat"></span>
-          </a>
-        </td>
+<div class="bottom-half">
 
-        <td>
-        <select ng-model="car2BtId" ng-change="swapCar(2)">
-          <option ng-repeat="x in cars" value="{{x.btid}}">{{x.model}}</option>
-        </select>
-        </td>
-        <td>
-          <a ng-click="swapCar(2)" class="btn btn-link">
-            <span class="glyphicon glyphicon-repeat"></span>
-          </a>
-        </td>
+  <!-- Car1 -->
+  <div class="car-control-container tableview">
+    <div class="enclosed">
+      <table class="table">
+        <tr>
+          <td>Car 1</td>
+          <td>
+            <select class="large-select" ng-model="car1BtId" ng-change="swapCar(1)">
+              <option ng-repeat="x in cars" value="{{x.btid}}">{{x.model}}</option>
+            </select>
+          </td>
+          <td>
+            <a ng-click="swapCar(1)" class="btn btn-link">
+              <span class="glyphicon glyphicon-repeat"></span>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>Speed</td>
+          <td>{{ status[1].carSpeed }}</td>
+          <td>
+            <a ng-click="changeSpeedDown(1)" class="btn btn-link">
+              <span class="glyphicon glyphicon-circle-arrow-down"></span>
+            </a>
+            <a ng-click="changeSpeedUp(1)" class="btn btn-link">
+              <span class="glyphicon glyphicon-circle-arrow-up"></span>
+            </a>
+            <a ng-click="changeSpeedStop(1)" class="btn btn-link">
+              <span class="glyphicon glyphicon-ban-circle"></span>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>Lane</td>
+          <td>{{ status[1].laneNo }} ({{status[1].laneOffset}}) <span ng-if="status[1].laneNo !== status[1].laneOffset"
+                                                                      class="" glyphicon glyphicon-warning-sign></span>
+          </td>
+          <td>
+            <a ng-click="changeLaneLeft(1)" class="btn btn-link">
+              <span class="glyphicon glyphicon-circle-arrow-left"></span>
+            </a>
+            <a ng-click="changeLaneRight(1)" class="btn btn-link">
+              <span class="glyphicon glyphicon-circle-arrow-right"></span>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>Battery</td>
+          <td>{{ status[1].carBatteryLevel }}</td>
+          <td>
+            <a ng-click="requestLevel(1)" class="btn btn-link">
+              <span class="glyphicon glyphicon-repeat"></span>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>Tile</td>
+          <td>{{ status[1].posTileNo }} - {{ status[1].posTileType }}</td>
+          <td><img class="tile-img" ng-src="{{ car1tileimg }}"></td>
+        </tr>
+      </table>
+    </div>
+  </div>
 
-      </tr>
-      <tr>
-        <td>Car Speed</td>
-        <!-- Car1 -->
-        <td>{{ status[1].carSpeed }}</td>
-        <td>
-          <a ng-click="changeSpeedDown(1)" class="btn btn-link">
-            <span class="glyphicon glyphicon-circle-arrow-down"></span>
-          </a>
-          <a ng-click="changeSpeedUp(1)" class="btn btn-link">
-            <span class="glyphicon glyphicon-circle-arrow-up"></span>
-          </a>
-          <a ng-click="changeSpeedStop(1)" class="btn btn-link">
-            <span class="glyphicon glyphicon-off"></span>
-          </a>
-        </td>
-        <!-- Car2 -->
-        <td>{{ status[2].carSpeed }}</td>
-        <td>
-          <a ng-click="changeSpeedDown(2)" class="btn btn-link">
-            <span class="glyphicon glyphicon-circle-arrow-down"></span>
-          </a>
-          <a ng-click="changeSpeedUp(2)" class="btn btn-link">
-            <span class="glyphicon glyphicon-circle-arrow-up"></span>
-          </a>
-          <a ng-click="changeSpeedStop(2)" class="btn btn-link">
-            <span class="glyphicon glyphicon-off"></span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>Car Lane No</td>
-        <!-- Car1 -->
-        <td>{{ status[1].laneNo }} ({{status[1].laneOffset}}) <span ng-if="status[1].laneNo !== status[1].laneOffset"
-                                                                    class=""glyphicon glyphicon-warning-sign></span></td>
-        <td>
-          <a ng-click="changeLaneLeft(1)" class="btn btn-link">
-            <span class="glyphicon glyphicon-circle-arrow-left"></span>
-          </a>
-          <a ng-click="changeLaneRight(1)" class="btn btn-link">
-            <span class="glyphicon glyphicon-circle-arrow-right"></span>
-          </a>
-        </td>
-        <!-- Car2 -->
-        <td>{{ status[2].laneNo }} ({{status[2].laneOffset}}) <span ng-if="status[2].laneNo !== status[2].laneOffset"
-                                                                    class="glyphicon glyphicon-warning-sign"></span</td>
-        <td>
-          <a ng-click="changeLaneLeft(2)" class="btn btn-link">
-            <span class="glyphicon glyphicon-circle-arrow-left"></span>
-          </a>
-          <a ng-click="changeLaneRight(2)" class="btn btn-link">
-            <span class="glyphicon glyphicon-circle-arrow-right"></span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>Car Lane Length</td>
-        <!-- Car1 -->
-        <td>{{ status[1].laneLength }}</td>
-        <td>
-        </td>
-        <!-- Car2 -->
-        <td>{{ status[2].laneLength }}</td>
-        <td>
-        </td>
-
-      </tr>
-
-      <tr>
-        <td>Car Lights</td>
-        <!-- Car1 -->
-        <td></td>
-        <td>
-          <a ng-click="changeLight(1)" class="btn btn-link">
-            <span class="glyphicon glyphicon-star"></span>
-          </a>
-          <a ng-click="changeLightPattern(1)" class="btn btn-link">
-            <span class="glyphicon glyphicon-asterisk"></span>
-          </a>
-        </td>
-        <!-- Car2 -->
-        <td></td>
-        <td>
-          <a ng-click="changeLight(2)" class="btn btn-link">
-            <span class="glyphicon glyphicon-star"></span>
-          </a>
-          <a ng-click="changeLightPattern(2)" class="btn btn-link">
-            <span class="glyphicon glyphicon-asterisk"></span>
-          </a>
-        </td>
-
-      </tr>
-      <tr>
-        <td>Car Battery Level</td>
-        <!-- Car1 -->
-        <td>{{ status[1].carBatteryLevel }}</td>
-        <td>
-          <a ng-click="requestLevel(1)" class="btn btn-link">
-            <span class="glyphicon glyphicon-repeat"></span>
-          </a>
-        </td>
-        <!-- Car2 -->
-        <td>{{ status[2].carBatteryLevel }}</td>
-        <td>
-          <a ng-click="requestLevel(2)" class="btn btn-link">
-            <span class="glyphicon glyphicon-repeat"></span>
-          </a>
-        </td>
-
-      </tr>
-      <tr>
-        <td>Position Tile No</td>
-        <!-- Car1 -->
-        <td>{{ status[1].posTileNo }}</td>
-        <td>
-          <a class="btn btn-link">
-            <span class="glyphicon glyphicon-xxx"></span>
-          </a>
-        </td>
-        <!-- Car2 -->
-        <td>{{ status[2].posTileNo }}</td>
-        <td>
-          <a class="btn btn-link">
-            <span class="glyphicon glyphicon-xxx"></span>
-          </a>
-        </td>
-
-      </tr>
-      <tr>
-        <td>Position Tile Type</td>
-        <!-- Car1 -->
-        <td>{{ status[1].posTileType }}</td>
-        <td>
-          <a class="btn btn-link">
-            <span class="glyphicon glyphicon-xxx"></span>
-          </a>
-        </td>
-        <!-- Car2 -->
-        <td>{{ status[2].posTileType }}</td>
-        <td>
-          <a class="btn btn-link">
-            <span class="glyphicon glyphicon-xxx"></span>
-          </a>
-        </td>
-
-      </tr>
-      <tr>
-        <td>Position Location</td>
-        <!-- Car1 -->
-        <td>{{ status[1].posLocation }}</td>
-        <td>
-          <a class="btn btn-link">
-            <span class="glyphicon glyphicon-xxx"></span>
-          </a>
-        </td>
-        <!-- Car2 -->
-        <td>{{ status[2].posLocation }}</td>
-        <td>
-          <a class="btn btn-link">
-            <span class="glyphicon glyphicon-xxx"></span>
-          </a>
-        </td>
-
-      </tr>
-    </table>
-  </p>
+  <!-- Car2 -->
+  <div class="car-control-container tableview">
+    <div class="enclosed">
+      <table class="table">
+        <tr>
+          <td>Car 2</td>
+          <td>
+            <select class="large-select" ng-model="car2BtId" ng-change="swapCar(2)">
+              <option ng-repeat="x in cars" value="{{x.btid}}">{{x.model}}</option>
+            </select>
+          </td>
+          <td>
+            <a ng-click="swapCar(2)" class="btn btn-link">
+              <span class="glyphicon glyphicon-repeat"></span>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>Speed</td>
+          <td>{{ status[2].carSpeed }}</td>
+          <td>
+            <a ng-click="changeSpeedDown(2)" class="btn btn-link">
+              <span class="glyphicon glyphicon-circle-arrow-down"></span>
+            </a>
+            <a ng-click="changeSpeedUp(2)" class="btn btn-link">
+              <span class="glyphicon glyphicon-circle-arrow-up"></span>
+            </a>
+            <a ng-click="changeSpeedStop(2)" class="btn btn-link">
+              <span class="glyphicon glyphicon-ban-circle"></span>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>Lane</td>
+          <td>{{ status[2].laneNo }} ({{status[2].laneOffset}}) <span ng-if="status[2].laneNo !== status[2].laneOffset"
+                                                                      class="glyphicon glyphicon-warning-sign"></span>
+          </td>
+          <td>
+            <a ng-click="changeLaneLeft(2)" class="btn btn-link">
+              <span class="glyphicon glyphicon-circle-arrow-left"></span>
+            </a>
+            <a ng-click="changeLaneRight(2)" class="btn btn-link">
+              <span class="glyphicon glyphicon-circle-arrow-right"></span>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>Battery</td>
+          <td>{{ status[2].carBatteryLevel }}</td>
+          <td>
+            <a ng-click="requestLevel(2)" class="btn btn-link">
+              <span class="glyphicon glyphicon-repeat"></span>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>Tile</td>
+          <td>{{ status[2].posTileNo }} - {{ status[2].posTileType }}</td>
+          <td><img class="tile-img" ng-src="{{ car2tileimg }}"></td>
+        </tr>
+      </table>
+    </div>
+    <br style="clear: left" />
+  </div>
 </div>
