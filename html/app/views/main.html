@@ -115,8 +115,18 @@ DEALINGS IN THE SOFTWARE.
         </tr>
         <tr>
           <td>Tile</td>
-          <td>{{ status[1].posTileNo }} - {{ status[1].posTileType }}</td>
-          <td><img class="tile-img" ng-src="{{ car1tileimg }}"></td>
+          <td>
+            <div class="tile-number-wrapper">
+              <div class="tile-number-icon">
+                <img class="" ng-src="{{ tilenumberimg }}">
+              </div>
+              <div class="tile-number-text">
+                {{ status[1].posTileNo }}
+              </div>
+            </div>
+            <img class="tile-img" ng-src="{{ car1tileimg }}">
+          </td>
+          <td></td>
         </tr>
       </table>
     </div>
@@ -197,8 +207,18 @@ DEALINGS IN THE SOFTWARE.
         </tr>
         <tr>
           <td>Tile</td>
-          <td>{{ status[2].posTileNo }} - {{ status[2].posTileType }}</td>
-          <td><img class="tile-img" ng-src="{{ car2tileimg }}"></td>
+          <td>
+            <div class="tile-number-wrapper">
+              <div class="tile-number-icon">
+                <img class="" ng-src="{{ tilenumberimg }}">
+              </div>
+              <div class="tile-number-text">
+                {{ status[2].posTileNo }}
+              </div>
+            </div>
+            <img class="tile-img" ng-src="{{ car2tileimg }}">
+          </td>
+          <td></td>
         </tr>
       </table>
     </div>

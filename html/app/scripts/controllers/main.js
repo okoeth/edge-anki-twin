@@ -448,6 +448,7 @@ angular.module('htmlApp')
 		$scope.status = [{},{},{}];
 		$scope.speedimg = $scope.imgFilePrefix + 'speedometer.png';
     $scope.batteryimg = $scope.imgFilePrefix + 'battery-icon.png';
+    $scope.tilenumberimg = $scope.imgFilePrefix + 'tile-number.png';
 
 		MainFactory.getCars()
       .then(

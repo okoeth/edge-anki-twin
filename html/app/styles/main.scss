@@ -165,11 +165,6 @@ body {
     font-size: 18px;
 }
 
-.tile-img {
-  width: 50px;
-  height: 50px;
-}
-
 .speed-wrapper {
   margin-top: -5px;
   display: inline-block;
@@ -198,4 +193,24 @@ body {
   margin-top: -32px;
   margin-left: -5px;
   text-align: center;
+}
+
+.tile-number-wrapper {
+  display: inline-block;
+}
+
+.tile-number-icon img {
+  width: 40px;
+  height: 40px;
+}
+
+.tile-number-text {
+  margin-top: -33px;
+  text-align: center;
+}
+
+.tile-img {
+  margin-left: 25px;
+  width: 75px;
+  height: 75px;
 }

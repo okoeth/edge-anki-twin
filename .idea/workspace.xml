@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="df4914c5-0836-4a72-ab89-5452745b3cb5" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/html/app/images/speedometer.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/html/app/images/tile-number.png" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/html/app/images/battery-icon.png" afterPath="$PROJECT_DIR$/html/app/images/battery-icon.png" />
       <change beforePath="$PROJECT_DIR$/html/app/scripts/controllers/main.js" afterPath="$PROJECT_DIR$/html/app/scripts/controllers/main.js" />
       <change beforePath="$PROJECT_DIR$/html/app/styles/main.scss" afterPath="$PROJECT_DIR$/html/app/styles/main.scss" />
       <change beforePath="$PROJECT_DIR$/html/app/views/main.html" afterPath="$PROJECT_DIR$/html/app/views/main.html" />
@@ -22,18 +21,25 @@
       <file leaf-file-name="main.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/html/app/styles/main.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="709">
-              <caret line="165" column="1" lean-forward="true" selection-start-line="165" selection-start-column="1" selection-end-line="165" selection-end-column="1" />
+            <state relative-caret-position="801">
+              <caret line="207" column="2" lean-forward="false" selection-start-line="207" selection-start-column="2" selection-end-line="207" selection-end-column="2" />
               <folding />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tile-number.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/html/app/images/tile-number.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="main.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/app/views/main.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="517">
-              <caret line="153" column="10" lean-forward="false" selection-start-line="153" selection-start-column="10" selection-end-line="153" selection-end-column="10" />
+            <state relative-caret-position="831">
+              <caret line="221" column="8" lean-forward="false" selection-start-line="221" selection-start-column="8" selection-end-line="221" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -42,8 +48,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/app/scripts/controllers/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="734">
-              <caret line="448" column="4" lean-forward="false" selection-start-line="448" selection-start-column="4" selection-end-line="448" selection-end-column="4" />
+            <state relative-caret-position="824">
+              <caret line="454" column="35" lean-forward="true" selection-start-line="454" selection-start-column="35" selection-end-line="454" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -114,8 +120,8 @@
         <option value="$PROJECT_DIR$/html/Gruntfile.js" />
         <option value="$PROJECT_DIR$/twin_main.go" />
         <option value="$PROJECT_DIR$/html/app/scripts/controllers/main.js" />
-        <option value="$PROJECT_DIR$/html/app/views/main.html" />
         <option value="$PROJECT_DIR$/html/app/styles/main.scss" />
+        <option value="$PROJECT_DIR$/html/app/views/main.html" />
       </list>
     </option>
   </component>
@@ -262,6 +268,7 @@
     <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="configurable.Module.GOPATH.is.expanded" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/.idea/workspace.xml" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -456,11 +463,18 @@
       <option name="project" value="LOCAL" />
       <updated>1517593957527</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added speedometer icon as a wrapper around the speed, in car display tables">
+      <created>1517598774762</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1517598774762</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64442000" />
+    <option name="totallyTimeSpent" value="65395000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1417" extended-state="0" />
@@ -550,7 +564,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Merge branch 'master' into branch 'design-changes'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="added battery icon as a wrapper around the battery level, in car display tables" />
-    <option name="LAST_COMMIT_MESSAGE" value="added battery icon as a wrapper around the battery level, in car display tables" />
+    <MESSAGE value="added speedometer icon as a wrapper around the speed, in car display tables" />
+    <option name="LAST_COMMIT_MESSAGE" value="added speedometer icon as a wrapper around the speed, in car display tables" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -559,13 +574,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/github.com/okoeth/edge-anki-base/base_status_model.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="78" column="26" lean-forward="false" selection-start-line="78" selection-start-column="26" selection-end-line="78" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/example.jpg" />
     <entry file="file://$PROJECT_DIR$/html/app/views/capture.html" />
     <entry file="file://$PROJECT_DIR$/html/app/robots.txt">
@@ -864,6 +872,22 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/html/app/views/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="831">
+          <caret line="221" column="8" lean-forward="false" selection-start-line="221" selection-start-column="8" selection-end-line="221" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/app/scripts/controllers/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="824">
+          <caret line="454" column="35" lean-forward="true" selection-start-line="454" selection-start-column="35" selection-end-line="454" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -872,26 +896,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html/app/scripts/controllers/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="734">
-          <caret line="448" column="4" lean-forward="false" selection-start-line="448" selection-start-column="4" selection-end-line="448" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/app/views/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="517">
-          <caret line="153" column="10" lean-forward="false" selection-start-line="153" selection-start-column="10" selection-end-line="153" selection-end-column="10" />
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/html/app/images/tile-number.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/html/app/styles/main.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="709">
-          <caret line="165" column="1" lean-forward="true" selection-start-line="165" selection-start-column="1" selection-end-line="165" selection-end-column="1" />
+        <state relative-caret-position="801">
+          <caret line="207" column="2" lean-forward="false" selection-start-line="207" selection-start-column="2" selection-end-line="207" selection-end-column="2" />
           <folding />
         </state>
       </provider>
