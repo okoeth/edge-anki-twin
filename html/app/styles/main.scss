@@ -180,6 +180,31 @@ body {
   text-align: center;
 }
 
+.lane-wrapper {
+  display: inline-block;
+}
+
+.lane-icon img {
+  width: 90px;
+  height: 41px;
+}
+
+.lane-text {
+  margin-top: -35px;
+}
+
+.lane-text-left {
+  margin-left: 20px;
+}
+
+.lane-text-right {
+  margin-left: 28px;
+}
+
+.lane-text-outside {
+  margin-left: 35px;
+}
+
 .battery-wrapper {
   display: inline-block;
 }

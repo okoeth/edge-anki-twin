@@ -446,7 +446,8 @@ angular.module('htmlApp')
 		$scope.poll = false;
 		$scope.text = 'Start polling';
 		$scope.status = [{},{},{}];
-		$scope.speedimg = $scope.imgFilePrefix + 'speedometer.png';
+    $scope.speedimg = $scope.imgFilePrefix + 'speedometer.png';
+    $scope.laneimg = $scope.imgFilePrefix + 'lane.png';
     $scope.batteryimg = $scope.imgFilePrefix + 'battery-icon.png';
     $scope.tilenumberimg = $scope.imgFilePrefix + 'tile-number.png';
 
