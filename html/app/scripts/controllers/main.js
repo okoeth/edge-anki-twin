@@ -68,15 +68,15 @@ function refreshLoop($scope, $timeout, MainFactory) {
         }
 
         // update the car images
-        $scope.car1img = '/images/' + $scope.findImgFileForId($scope.car1BtId);
-        $scope.car2img = '/images/' + $scope.findImgFileForId($scope.car2BtId);
+        $scope.car1img = $scope.findImgFileForId($scope.car1BtId);
+        $scope.car2img = $scope.findImgFileForId($scope.car2BtId);
 			},
 			function (response) { // nok
 				console.error('ERROR: getStatus request failed: ' + response.statusText);
 
 				// DEBUG: use some mock data if the back-end is missing
-        $scope.status[1].carID = 'edef582991e2';
-        $scope.status[2].carID = 'fb8f2bab1e4b';
+        $scope.status[1].carID = 'fb8f2bab1e4b';
+        $scope.status[2].carID = 'fb2c43ca4073';
         $scope.car1BtId = $scope.status[1].carID;
         $scope.car2BtId = $scope.status[2].carID;
         $scope.status[1].laneOffset = '1';
@@ -91,10 +91,8 @@ function refreshLoop($scope, $timeout, MainFactory) {
         $scope.status[2].posTileNo = '2';
         $scope.status[1].posTileType = 'STRAIGHT';
         $scope.status[2].posTileType = 'CURVE';
-        $scope.imageUrl = 'images/golang.png';
-
-        $scope.car1img = '/images/' + $scope.cars[0].img;
-        $scope.car2img = '/images/' + $scope.cars[1].img;
+        $scope.car1img = $scope.findImgFileForId($scope.status[1].carID);
+        $scope.car2img = $scope.findImgFileForId($scope.status[2].carID);
         $scope.imageUrl = '/images/capture.jpg';
 			}
 			);
@@ -379,14 +377,25 @@ angular.module('htmlApp')
       {'model': 'XX FREEWHEEL (GREEN/SILVER)', 'btid': 'df46034abd1b', 'img': 'freewheel.jpg'}
     ];
 
-		// figure out which image file to use for a car, given the bluetooth id (or use a default)
     $scope.findImgFileForId = function(btid) {
-      for (var i = 0; i < $scope.imgFileForId.length; i++) {
-        if ($scope.imgFileForId[i].btid === btid) {
-          return $scope.imgFileForId[i].img;
+      var prefix = '/images/';
+
+      // try first to see if the image file is named in the cars json from the back-end
+      for (var i1 = 0; i1 < $scope.cars.length; i1++) {
+        if ($scope.cars[i1].btid === btid && $scope.cars[i1].img) {
+          return prefix + $scope.cars[i1].img;
         }
       }
-      return $scope.imgFileForId[0].img;
+
+      // fall back to the built-in list for an image file to use for a car, given the bluetooth id
+      for (var i2 = 0; i2 < $scope.imgFileForId.length; i2++) {
+        if ($scope.imgFileForId[i2].btid === btid) {
+          return prefix + $scope.imgFileForId[i2].img;
+        }
+      }
+
+      // finally, use a default if there is no other choice
+      return prefix + $scope.imgFileForId[0].img;
     };
 
 		// Initialise
