@@ -396,7 +396,9 @@ angular.module('htmlApp')
       {'model': '19 GUARDIAN (BLUE/SILVER)', 'btid': 'd3c74657a020', 'img': 'guardian.jpg'},
       {'model': '20 MUSCLE (GRAY)', 'btid': 'd4b42cc5cf27', 'img': 'muscle.jpg'},
       {'model': '21 PICKUPTRUCK (GRAY)', 'btid': 'd00a267f9e09', 'img': 'pickuptruck.jpg'},
-      {'model': 'XX FREEWHEEL (GREEN/SILVER)', 'btid': 'df46034abd1b', 'img': 'freewheel.jpg'}
+      {'model': 'XX FREEWHEEL (GREEN/SILVER)', 'btid': 'df46034abd1b', 'img': 'freewheel.jpg'},
+      {'model': '1 GROUNDSHOCK (BLUE)', 'btid': 'da817193ce9c', 'img': 'groundshock.jpg'},
+      {'model': '2 SKULL (BLACK)', 'btid': 'e6d3ac9af37e', 'img': 'skull.jpg'}
     ];
 
     $scope.findImgFileForId = function(btid) {
