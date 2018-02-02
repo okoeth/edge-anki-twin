@@ -59,7 +59,16 @@ DEALINGS IN THE SOFTWARE.
         </tr>
         <tr>
           <td>Speed</td>
-          <td>{{ status[1].carSpeed }}</td>
+          <td>
+            <div class="speed-wrapper">
+              <div class="speed-icon">
+                <img class="" ng-src="{{ speedimg }}">
+              </div>
+              <div class="speed-text">
+                {{ status[1].carSpeed }}
+              </div>
+            </div>
+          </td>
           <td>
             <a ng-click="changeSpeedDown(1)" class="btn btn-link">
               <span class="glyphicon glyphicon-circle-arrow-down"></span>
@@ -89,7 +98,7 @@ DEALINGS IN THE SOFTWARE.
         <tr>
           <td>Battery</td>
           <td>
-            <div class="battery-wrapper"}>
+            <div class="battery-wrapper">
               <div class="battery-icon">
                 <img class="" ng-src="{{ batteryimg }}">
               </div>
@@ -132,7 +141,16 @@ DEALINGS IN THE SOFTWARE.
         </tr>
         <tr>
           <td>Speed</td>
-          <td>{{ status[2].carSpeed }}</td>
+          <td>
+            <div class="speed-wrapper">
+              <div class="speed-icon">
+                <img class="" ng-src="{{ speedimg }}">
+              </div>
+              <div class="speed-text">
+                {{ status[2].carSpeed }}
+              </div>
+            </div>
+          </td>
           <td>
             <a ng-click="changeSpeedDown(2)" class="btn btn-link">
               <span class="glyphicon glyphicon-circle-arrow-down"></span>
@@ -162,7 +180,7 @@ DEALINGS IN THE SOFTWARE.
         <tr>
           <td>Battery</td>
           <td>
-            <div class="battery-wrapper" }>
+            <div class="battery-wrapper">
               <div class="battery-icon">
                 <img class="" ng-src="{{ batteryimg }}">
               </div>
