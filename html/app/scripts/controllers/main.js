@@ -446,6 +446,7 @@ angular.module('htmlApp')
 		$scope.poll = false;
 		$scope.text = 'Start polling';
 		$scope.status = [{},{},{}];
+		$scope.batteryimg = $scope.imgFilePrefix + 'battery-icon.png';
 
 		MainFactory.getCars()
       .then(

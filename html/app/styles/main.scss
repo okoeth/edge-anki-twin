@@ -165,3 +165,18 @@ body {
   width: 50px;
   height: 50px;
 }
+
+.battery-wrapper {
+  display: inline-block;
+}
+
+.battery-icon img {
+  width: 90px;
+  height: 38px;
+}
+
+.battery-text {
+  margin-top: -32px;
+  margin-left: -5px;
+  text-align: center;
+}
