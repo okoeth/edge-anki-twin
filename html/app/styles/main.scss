@@ -58,7 +58,7 @@ body {
 }
 
 .top-half {
-  margin-top: -100px;
+  margin-top: -70px;
   margin-left: auto;
   margin-right: auto;
   width: 1000px;
@@ -120,10 +120,8 @@ body {
 }
 
 .car-control-container .enclosed {
-  padding: 40px 40px 20px;
+  padding: 0px 5px;
   background-color: #fff;
-  border: 1px solid rgba(0,0,0,.1);
-  border-radius: 4px;
 }
 
 .table {
@@ -132,12 +130,15 @@ body {
   width: 100%;
 }
 
-.table td {
+.table tbody > tr > td {
   vertical-align: middle;
-  padding: 20px 10px;
+  padding: 10px 10px;
 	border-top: 1px solid #e8e8e8;
-	border-bottom: 1px solid #e8e8e8;
   text-align: left;
+}
+
+.table tbody > tr:last-child > td {
+  border-bottom: 1px solid #e8e8e8;
 }
 
 .table tbody > tr > td:first-child {
@@ -155,13 +156,87 @@ body {
 .large-select {
   height: 2em;
   font-size: 14px;
+  background-color: #e5e9ed;
 }
 
 .glyphicon {
-    font-size: 18px;
+  margin-top: 5px;
+  font-size: 32px;
+  color: #485bb0;
+}
+
+.speed-wrapper {
+  margin-top: -5px;
+  display: inline-block;
+}
+
+.speed-icon img {
+  width: 50px;
+  height: 50px;
+}
+
+.speed-text {
+  margin-top: -37px;
+  text-align: center;
+}
+
+.lane-wrapper {
+  display: inline-block;
+}
+
+.lane-icon img {
+  width: 90px;
+  height: 41px;
+}
+
+.lane-text {
+  margin-top: -35px;
+  height: 30px;
+}
+
+.lane-text-left {
+  margin-left: 20px;
+}
+
+.lane-text-right {
+  margin-left: 28px;
+}
+
+.lane-text-outside {
+  margin-left: 35px;
+}
+
+.battery-wrapper {
+  display: inline-block;
+}
+
+.battery-icon img {
+  width: 90px;
+  height: 38px;
+}
+
+.battery-text {
+  margin-top: -32px;
+  margin-left: -5px;
+  text-align: center;
+}
+
+.tile-number-wrapper {
+  display: inline-block;
+}
+
+.tile-number-icon img {
+  width: 40px;
+  height: 40px;
+}
+
+.tile-number-text {
+  margin-top: -33px;
+  text-align: center;
 }
 
 .tile-img {
-  width: 50px;
-  height: 50px;
+  margin-left: 25px;
+  width: 75px;
+  height: 45px;
 }

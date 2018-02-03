@@ -99,8 +99,8 @@ function refreshLoop($scope, $timeout, MainFactory) {
         $scope.car2BtId = $scope.status[2].carID;
         $scope.status[1].laneOffset = '1';
         $scope.status[2].laneOffset = '2';
-        $scope.status[1].carSpeed = '45';
-        $scope.status[2].carSpeed = '46';
+        $scope.status[1].carSpeed = '450';
+        $scope.status[2].carSpeed = '460';
         $scope.status[1].laneNo = '1';
         $scope.status[2].laneNo = '2';
         $scope.status[1].carBatteryLevel = '3801';
@@ -446,6 +446,10 @@ angular.module('htmlApp')
 		$scope.poll = false;
 		$scope.text = 'Start polling';
 		$scope.status = [{},{},{}];
+    $scope.speedimg = $scope.imgFilePrefix + 'speedometer.png';
+    $scope.laneimg = $scope.imgFilePrefix + 'lane.png';
+    $scope.batteryimg = $scope.imgFilePrefix + 'battery-icon.png';
+    $scope.tilenumberimg = $scope.imgFilePrefix + 'tile-number.png';
 
 		MainFactory.getCars()
       .then(

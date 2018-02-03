@@ -59,7 +59,16 @@ DEALINGS IN THE SOFTWARE.
         </tr>
         <tr>
           <td>Speed</td>
-          <td>{{ status[1].carSpeed }}</td>
+          <td>
+            <div class="speed-wrapper">
+              <div class="speed-icon">
+                <img class="" ng-src="{{ speedimg }}">
+              </div>
+              <div class="speed-text">
+                {{ status[1].carSpeed }}
+              </div>
+            </div>
+          </td>
           <td>
             <a ng-click="changeSpeedDown(1)" class="btn btn-link">
               <span class="glyphicon glyphicon-circle-arrow-down"></span>
@@ -74,8 +83,25 @@ DEALINGS IN THE SOFTWARE.
         </tr>
         <tr>
           <td>Lane</td>
-          <td>{{ status[1].laneNo }} ({{status[1].laneOffset}}) <span ng-if="status[1].laneNo !== status[1].laneOffset"
-                                                                      class="" glyphicon glyphicon-warning-sign></span>
+          <td>
+            <div class="lane-wrapper">
+              <div class="lane-icon">
+                <img class="" ng-src="{{ laneimg }}">
+              </div>
+              <div class="lane-text">
+                <span class="lane-text-left">
+                  {{ status[1].laneNo }}
+                </span>
+                <span class="lane-text-right">
+                  {{ status[1].laneOffset }}
+                </span>
+                <!--
+                <span class="lane-text-outside">
+                  <span ng-if="status[1].laneNo !== status[1].laneOffset" class="glyphicon glyphicon-warning-sign" style="display: inline"></span>
+                </span>
+                -->
+              </div>
+            </div>
           </td>
           <td>
             <a ng-click="changeLaneLeft(1)" class="btn btn-link">
@@ -88,7 +114,16 @@ DEALINGS IN THE SOFTWARE.
         </tr>
         <tr>
           <td>Battery</td>
-          <td>{{ status[1].carBatteryLevel }}</td>
+          <td>
+            <div class="battery-wrapper">
+              <div class="battery-icon">
+                <img class="" ng-src="{{ batteryimg }}">
+              </div>
+              <div class="battery-text">
+                {{ status[1].carBatteryLevel }}
+              </div>
+            </div>
+          </td>
           <td>
             <a ng-click="requestLevel(1)" class="btn btn-link">
               <span class="glyphicon glyphicon-repeat"></span>
@@ -97,8 +132,18 @@ DEALINGS IN THE SOFTWARE.
         </tr>
         <tr>
           <td>Tile</td>
-          <td>{{ status[1].posTileNo }} - {{ status[1].posTileType }}</td>
-          <td><img class="tile-img" ng-src="{{ car1tileimg }}"></td>
+          <td>
+            <div class="tile-number-wrapper">
+              <div class="tile-number-icon">
+                <img class="" ng-src="{{ tilenumberimg }}">
+              </div>
+              <div class="tile-number-text">
+                {{ status[1].posTileNo }}
+              </div>
+            </div>
+            <img class="tile-img" ng-src="{{ car1tileimg }}">
+          </td>
+          <td></td>
         </tr>
       </table>
     </div>
@@ -123,7 +168,16 @@ DEALINGS IN THE SOFTWARE.
         </tr>
         <tr>
           <td>Speed</td>
-          <td>{{ status[2].carSpeed }}</td>
+          <td>
+            <div class="speed-wrapper">
+              <div class="speed-icon">
+                <img class="" ng-src="{{ speedimg }}">
+              </div>
+              <div class="speed-text">
+                {{ status[2].carSpeed }}
+              </div>
+            </div>
+          </td>
           <td>
             <a ng-click="changeSpeedDown(2)" class="btn btn-link">
               <span class="glyphicon glyphicon-circle-arrow-down"></span>
@@ -138,8 +192,25 @@ DEALINGS IN THE SOFTWARE.
         </tr>
         <tr>
           <td>Lane</td>
-          <td>{{ status[2].laneNo }} ({{status[2].laneOffset}}) <span ng-if="status[2].laneNo !== status[2].laneOffset"
-                                                                      class="glyphicon glyphicon-warning-sign"></span>
+          <td>
+            <div class="lane-wrapper">
+              <div class="lane-icon">
+                <img class="" ng-src="{{ laneimg }}">
+              </div>
+              <div class="lane-text">
+                <span class="lane-text-left">
+                  {{ status[2].laneNo }}
+                </span>
+                <span class="lane-text-right">
+                  {{ status[2].laneOffset }}
+                </span>
+                <!--
+                <span class="lane-text-outside">
+                  <span ng-if="status[2].laneNo !== status[2].laneOffset" class="glyphicon glyphicon-warning-sign"></span>
+                </span>
+                -->
+              </div>
+            </div>
           </td>
           <td>
             <a ng-click="changeLaneLeft(2)" class="btn btn-link">
@@ -152,7 +223,16 @@ DEALINGS IN THE SOFTWARE.
         </tr>
         <tr>
           <td>Battery</td>
-          <td>{{ status[2].carBatteryLevel }}</td>
+          <td>
+            <div class="battery-wrapper">
+              <div class="battery-icon">
+                <img class="" ng-src="{{ batteryimg }}">
+              </div>
+              <div class="battery-text">
+                {{ status[2].carBatteryLevel }}
+              </div>
+            </div>
+          </td>
           <td>
             <a ng-click="requestLevel(2)" class="btn btn-link">
               <span class="glyphicon glyphicon-repeat"></span>
@@ -161,8 +241,18 @@ DEALINGS IN THE SOFTWARE.
         </tr>
         <tr>
           <td>Tile</td>
-          <td>{{ status[2].posTileNo }} - {{ status[2].posTileType }}</td>
-          <td><img class="tile-img" ng-src="{{ car2tileimg }}"></td>
+          <td>
+            <div class="tile-number-wrapper">
+              <div class="tile-number-icon">
+                <img class="" ng-src="{{ tilenumberimg }}">
+              </div>
+              <div class="tile-number-text">
+                {{ status[2].posTileNo }}
+              </div>
+            </div>
+            <img class="tile-img" ng-src="{{ car2tileimg }}">
+          </td>
+          <td></td>
         </tr>
       </table>
     </div>
