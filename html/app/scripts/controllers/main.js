@@ -427,6 +427,7 @@ angular.module('htmlApp')
     };
 
     $scope.imgFileForTileType = [
+      {'type': '-', 'img': 'unknown-tile.jpg'},
       {'type': 'STRAIGHT', 'img': 'straight.jpg'},
       {'type': 'CURVE', 'img': 'curve.jpg'},
       {'type': 'CROSSING', 'img': 'crossing.jpg'}
