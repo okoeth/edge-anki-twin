@@ -380,6 +380,12 @@ angular.module('htmlApp')
 				);
 		};
 
+		// Handler function for toggling the collision tile image
+    $scope.toggleCollisionImage = function () {
+      console.log('INFO: Handling toggle collision image');
+      this.showCollisionImg = !this.showCollisionImg;
+    };
+
 		$scope.imgFilePrefix = 'images/';
 
 		$scope.imgFileForId = [
