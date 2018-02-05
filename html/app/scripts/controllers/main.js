@@ -52,16 +52,18 @@ function refreshLoop($scope, $timeout, MainFactory) {
         $scope.status[2].laneOffset = MainFactory.translateCarOffsetToLane($scope.status[2].laneOffset);
         $scope.status[3].laneOffset = MainFactory.translateCarOffsetToLane($scope.status[3].laneOffset);
 
-        console.log('INFO: Timer for image reload triggered');
-        $scope.imageUrl = MainFactory.getCollisionImageURL();
+        if ($scope.showCollisionImg) {
+          console.log('INFO: Timer for image reload triggered');
+          $scope.imageUrl = MainFactory.getCollisionImageURL();
+        }
 
-        // update the car images
+        // update the car-specific images
         $scope.car1img = $scope.findImgFileForId($scope.car1BtId);
         $scope.car2img = $scope.findImgFileForId($scope.car2BtId);
-
-        // update the tile images
         $scope.car1tileimg = $scope.findImgFileForTileType($scope.status[1].posTileType);
         $scope.car2tileimg = $scope.findImgFileForTileType($scope.status[2].posTileType);
+        $scope.car1batteryimg = $scope.findImgFileForBatteryLevel($scope.status[1].carBatteryLevel);
+        $scope.car2batteryimg = $scope.findImgFileForBatteryLevel($scope.status[2].carBatteryLevel);
 			},
 			function (response) { // nok
 				console.error('ERROR: getStatus request failed: ' + response.statusText);
