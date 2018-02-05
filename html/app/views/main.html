@@ -19,7 +19,7 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 DEALINGS IN THE SOFTWARE.
 -->
 
-<div class="top-half">
+<div ng-if="showCollisionImg" class="top-half">
   <div class="car-img-container">
     <div class="enclosed">
       <img ng-src="{{ car1img }}">
@@ -28,6 +28,20 @@ DEALINGS IN THE SOFTWARE.
   <div class="collision-img-container">
     <div class="enclosed">
       <img ng-src="{{ imageUrl }}">
+    </div>
+  </div>
+  <div class="car-img-container">
+    <div class="enclosed">
+      <img ng-src="{{ car2img }}">
+    </div>
+  </div>
+  <br style="clear: left" />
+</div>
+
+<div ng-if="!showCollisionImg" class="top-half-no-collision-img">
+  <div class="car-img-container">
+    <div class="enclosed">
+      <img ng-src="{{ car1img }}">
     </div>
   </div>
   <div class="car-img-container">

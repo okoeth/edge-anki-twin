@@ -450,6 +450,7 @@ angular.module('htmlApp')
     $scope.laneimg = $scope.imgFilePrefix + 'lane.png';
     $scope.batteryimg = $scope.imgFilePrefix + 'battery-icon.png';
     $scope.tilenumberimg = $scope.imgFilePrefix + 'tile-number.png';
+    $scope.showCollisionImg = true;
 
 		MainFactory.getCars()
       .then(
