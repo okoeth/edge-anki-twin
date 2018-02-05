@@ -103,8 +103,8 @@ function refreshLoop($scope, $timeout, MainFactory) {
         $scope.status[2].carSpeed = '460';
         $scope.status[1].laneNo = '1';
         $scope.status[2].laneNo = '2';
-        $scope.status[1].carBatteryLevel = '3801';
-        $scope.status[2].carBatteryLevel = '3902';
+        $scope.status[1].carBatteryLevel = '3540';
+        $scope.status[2].carBatteryLevel = '3890';
         $scope.status[1].posTileNo = '1';
         $scope.status[2].posTileNo = '2';
         $scope.status[1].posTileType = 'STRAIGHT';
@@ -113,6 +113,9 @@ function refreshLoop($scope, $timeout, MainFactory) {
         $scope.car2img = $scope.findImgFileForId($scope.status[2].carID);
         $scope.car1tileimg = $scope.findImgFileForTileType($scope.status[1].posTileType);
         $scope.car2tileimg = $scope.findImgFileForTileType($scope.status[2].posTileType);
+        $scope.car1batteryimg = $scope.findImgFileForBatteryLevel($scope.status[1].carBatteryLevel);
+        $scope.car2batteryimg = $scope.findImgFileForBatteryLevel($scope.status[2].carBatteryLevel);
+
         $scope.imageUrl = '/images/capture.jpg';
 			}
 			);
@@ -442,6 +445,23 @@ angular.module('htmlApp')
       return $scope.imgFilePrefix + $scope.imgFileForTileType[0].img;
     };
 
+    // battery levels need to be in order here, from fullest to emptiest
+    $scope.imgFileForBatteryMin = [
+      {'min': 3800, 'img': 'full-battery.png'},
+      {'min': 3200, 'img': 'half-battery.png'},
+      {'min': 0, 'img': 'empty-battery.png'}
+    ];
+
+    $scope.findImgFileForBatteryLevel = function(level) {
+      // looks for the fullest battery icon that qualifies at the given level
+      for (var i4 = 0; i4 < $scope.imgFileForBatteryMin.length; i4++) {
+        if ($scope.imgFileForBatteryMin[i4].min <= level) {
+          return $scope.imgFilePrefix + $scope.imgFileForBatteryMin[i4].img;
+        }
+      }
+      return $scope.imgFilePrefix + 'battery-icon.png';
+    };
+
 		// Initialise
 		$scope.lastUpdate = 'N/A';
 		$scope.poll = false;
@@ -449,7 +469,6 @@ angular.module('htmlApp')
 		$scope.status = [{},{},{}];
     $scope.speedimg = $scope.imgFilePrefix + 'speedometer.png';
     $scope.laneimg = $scope.imgFilePrefix + 'lane.png';
-    $scope.batteryimg = $scope.imgFilePrefix + 'battery-icon.png';
     $scope.tilenumberimg = $scope.imgFilePrefix + 'tile-number.png';
     $scope.showCollisionImg = true;
 
