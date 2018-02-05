@@ -19,27 +19,6 @@
 
 'use strict';
 
-// TODO: this code is duplicated in services.js, find a way to combine them into one place
-console.log('Initialise services at: '+window.location.href);
-var baseURL = '';
-
-function startsWithCharAt(string, pattern) {
-  for (var i = 0, length = pattern.length; i < length; i += 1) {
-    if (pattern.charAt(i) !== string.charAt(i)) {
-      return false;
-    }
-  }
-  return true;
-}
-
-if (startsWithCharAt(window.location.href, 'http://localhost:9000')) {
-  // TODO: make sure to set url to a back-end that is working, while developing front-end
-  //baseURL = 'http://10.2.2.207:8001';
-  baseURL = 'http://localhost:8001';
-	console.log('INFO: Using hard coded dev server at: ' + baseURL);
-}
-// TODO: end of duplicated code
-
 var timer;
 
 function refreshLoop($scope, $timeout, MainFactory) {
@@ -74,12 +53,7 @@ function refreshLoop($scope, $timeout, MainFactory) {
         $scope.status[3].laneOffset = MainFactory.translateCarOffsetToLane($scope.status[3].laneOffset);
 
         console.log('INFO: Timer for image reload triggered');
-        if (baseURL) {
-          $scope.imageUrl = baseURL + '/html/images/capture_old.jpg?x=' + new Date().getTime();
-        }
-        else {
-          $scope.imageUrl = 'images/capture_old.jpg?x=' + new Date().getTime();
-        }
+        $scope.imageUrl = MainFactory.getCollisionImageURL();
 
         // update the car images
         $scope.car1img = $scope.findImgFileForId($scope.car1BtId);
@@ -115,7 +89,6 @@ function refreshLoop($scope, $timeout, MainFactory) {
         $scope.car2tileimg = $scope.findImgFileForTileType($scope.status[2].posTileType);
         $scope.car1batteryimg = $scope.findImgFileForBatteryLevel($scope.status[1].carBatteryLevel);
         $scope.car2batteryimg = $scope.findImgFileForBatteryLevel($scope.status[2].carBatteryLevel);
-
         $scope.imageUrl = '/images/capture.jpg';
 			}
 			);
