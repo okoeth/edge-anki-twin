@@ -451,7 +451,7 @@ angular.module('htmlApp')
     $scope.speedimg = $scope.imgFilePrefix + 'speedometer.png';
     $scope.laneimg = $scope.imgFilePrefix + 'lane.png';
     $scope.tilenumberimg = $scope.imgFilePrefix + 'tile-number.png';
-    $scope.showCollisionImg = true;
+    $scope.showCollisionImg = false;
 
 		MainFactory.getCars()
       .then(
