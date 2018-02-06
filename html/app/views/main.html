@@ -19,7 +19,7 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 DEALINGS IN THE SOFTWARE.
 -->
 
-<div class="top-half">
+<div ng-if="showCollisionImg" class="top-half">
   <div class="car-img-container">
     <div class="enclosed">
       <img ng-src="{{ car1img }}">
@@ -28,6 +28,20 @@ DEALINGS IN THE SOFTWARE.
   <div class="collision-img-container">
     <div class="enclosed">
       <img ng-src="{{ imageUrl }}">
+    </div>
+  </div>
+  <div class="car-img-container">
+    <div class="enclosed">
+      <img ng-src="{{ car2img }}">
+    </div>
+  </div>
+  <br style="clear: left" />
+</div>
+
+<div ng-if="!showCollisionImg" class="top-half-no-collision-img">
+  <div class="car-img-container">
+    <div class="enclosed">
+      <img ng-src="{{ car1img }}">
     </div>
   </div>
   <div class="car-img-container">
@@ -117,7 +131,7 @@ DEALINGS IN THE SOFTWARE.
           <td>
             <div class="battery-wrapper">
               <div class="battery-icon">
-                <img class="" ng-src="{{ batteryimg }}">
+                <img class="" ng-src="{{ car1batteryimg }}">
               </div>
               <div class="battery-text">
                 {{ status[1].carBatteryLevel }}
@@ -143,7 +157,11 @@ DEALINGS IN THE SOFTWARE.
             </div>
             <img class="tile-img" ng-src="{{ car1tileimg }}">
           </td>
-          <td></td>
+          <td>
+            <a ng-click="toggleCollisionImage()" class="btn btn-link">
+              <span class="glyphicon glyphicon-ban-circle"></span>
+            </a>
+          </td>
         </tr>
       </table>
     </div>
@@ -226,7 +244,7 @@ DEALINGS IN THE SOFTWARE.
           <td>
             <div class="battery-wrapper">
               <div class="battery-icon">
-                <img class="" ng-src="{{ batteryimg }}">
+                <img class="" ng-src="{{ car2batteryimg }}">
               </div>
               <div class="battery-text">
                 {{ status[2].carBatteryLevel }}
@@ -252,7 +270,11 @@ DEALINGS IN THE SOFTWARE.
             </div>
             <img class="tile-img" ng-src="{{ car2tileimg }}">
           </td>
-          <td></td>
+          <td>
+            <a ng-click="toggleCollisionImage()" class="btn btn-link">
+              <span class="glyphicon glyphicon-ban-circle"></span>
+            </a>
+          </td>
         </tr>
       </table>
     </div>

@@ -73,6 +73,14 @@ angular.module('htmlApp')
       }
     };
 
+		MainFactory.getCollisionImageURL = function() {
+      if (baseURL) {
+        return baseURL + '/html/images/capture_old.jpg?x=' + new Date().getTime();
+      }
+      else {
+        return 'images/capture_old.jpg?x=' + new Date().getTime();
+      }
+    };
 
     ////////////////
     return MainFactory;

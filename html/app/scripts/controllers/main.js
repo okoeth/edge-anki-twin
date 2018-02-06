@@ -19,27 +19,6 @@
 
 'use strict';
 
-// TODO: this code is duplicated in services.js, find a way to combine them into one place
-console.log('Initialise services at: '+window.location.href);
-var baseURL = '';
-
-function startsWithCharAt(string, pattern) {
-  for (var i = 0, length = pattern.length; i < length; i += 1) {
-    if (pattern.charAt(i) !== string.charAt(i)) {
-      return false;
-    }
-  }
-  return true;
-}
-
-if (startsWithCharAt(window.location.href, 'http://localhost:9000')) {
-  // TODO: make sure to set url to a back-end that is working, while developing front-end
-  //baseURL = 'http://10.2.2.207:8001';
-  baseURL = 'http://localhost:8001';
-	console.log('INFO: Using hard coded dev server at: ' + baseURL);
-}
-// TODO: end of duplicated code
-
 var timer;
 
 function refreshLoop($scope, $timeout, MainFactory) {
@@ -73,21 +52,18 @@ function refreshLoop($scope, $timeout, MainFactory) {
         $scope.status[2].laneOffset = MainFactory.translateCarOffsetToLane($scope.status[2].laneOffset);
         $scope.status[3].laneOffset = MainFactory.translateCarOffsetToLane($scope.status[3].laneOffset);
 
-        console.log('INFO: Timer for image reload triggered');
-        if (baseURL) {
-          $scope.imageUrl = baseURL + '/html/images/capture_old.jpg?x=' + new Date().getTime();
-        }
-        else {
-          $scope.imageUrl = 'images/capture_old.jpg?x=' + new Date().getTime();
+        if ($scope.showCollisionImg) {
+          console.log('INFO: Timer for image reload triggered');
+          $scope.imageUrl = MainFactory.getCollisionImageURL();
         }
 
-        // update the car images
+        // update the car-specific images
         $scope.car1img = $scope.findImgFileForId($scope.car1BtId);
         $scope.car2img = $scope.findImgFileForId($scope.car2BtId);
-
-        // update the tile images
         $scope.car1tileimg = $scope.findImgFileForTileType($scope.status[1].posTileType);
         $scope.car2tileimg = $scope.findImgFileForTileType($scope.status[2].posTileType);
+        $scope.car1batteryimg = $scope.findImgFileForBatteryLevel($scope.status[1].carBatteryLevel);
+        $scope.car2batteryimg = $scope.findImgFileForBatteryLevel($scope.status[2].carBatteryLevel);
 			},
 			function (response) { // nok
 				console.error('ERROR: getStatus request failed: ' + response.statusText);
@@ -103,8 +79,8 @@ function refreshLoop($scope, $timeout, MainFactory) {
         $scope.status[2].carSpeed = '460';
         $scope.status[1].laneNo = '1';
         $scope.status[2].laneNo = '2';
-        $scope.status[1].carBatteryLevel = '3801';
-        $scope.status[2].carBatteryLevel = '3902';
+        $scope.status[1].carBatteryLevel = '3540';
+        $scope.status[2].carBatteryLevel = '3890';
         $scope.status[1].posTileNo = '1';
         $scope.status[2].posTileNo = '2';
         $scope.status[1].posTileType = 'STRAIGHT';
@@ -113,6 +89,8 @@ function refreshLoop($scope, $timeout, MainFactory) {
         $scope.car2img = $scope.findImgFileForId($scope.status[2].carID);
         $scope.car1tileimg = $scope.findImgFileForTileType($scope.status[1].posTileType);
         $scope.car2tileimg = $scope.findImgFileForTileType($scope.status[2].posTileType);
+        $scope.car1batteryimg = $scope.findImgFileForBatteryLevel($scope.status[1].carBatteryLevel);
+        $scope.car2batteryimg = $scope.findImgFileForBatteryLevel($scope.status[2].carBatteryLevel);
         $scope.imageUrl = '/images/capture.jpg';
 			}
 			);
@@ -377,6 +355,12 @@ angular.module('htmlApp')
 				);
 		};
 
+		// Handler function for toggling the collision tile image
+    $scope.toggleCollisionImage = function () {
+      console.log('INFO: Handling toggle collision image');
+      this.showCollisionImg = !this.showCollisionImg;
+    };
+
 		$scope.imgFilePrefix = 'images/';
 
 		$scope.imgFileForId = [
@@ -427,6 +411,7 @@ angular.module('htmlApp')
     };
 
     $scope.imgFileForTileType = [
+      {'type': '-', 'img': 'unknown-tile.jpg'},
       {'type': 'STRAIGHT', 'img': 'straight.jpg'},
       {'type': 'CURVE', 'img': 'curve.jpg'},
       {'type': 'CROSSING', 'img': 'crossing.jpg'}
@@ -441,6 +426,23 @@ angular.module('htmlApp')
       return $scope.imgFilePrefix + $scope.imgFileForTileType[0].img;
     };
 
+    // battery levels need to be in order here, from fullest to emptiest
+    $scope.imgFileForBatteryMin = [
+      {'min': 3800, 'img': 'full-battery.png'},
+      {'min': 3200, 'img': 'half-battery.png'},
+      {'min': 0, 'img': 'empty-battery.png'}
+    ];
+
+    $scope.findImgFileForBatteryLevel = function(level) {
+      // looks for the fullest battery icon that qualifies at the given level
+      for (var i4 = 0; i4 < $scope.imgFileForBatteryMin.length; i4++) {
+        if ($scope.imgFileForBatteryMin[i4].min <= level) {
+          return $scope.imgFilePrefix + $scope.imgFileForBatteryMin[i4].img;
+        }
+      }
+      return $scope.imgFilePrefix + 'battery-icon.png';
+    };
+
 		// Initialise
 		$scope.lastUpdate = 'N/A';
 		$scope.poll = false;
@@ -448,8 +450,8 @@ angular.module('htmlApp')
 		$scope.status = [{},{},{}];
     $scope.speedimg = $scope.imgFilePrefix + 'speedometer.png';
     $scope.laneimg = $scope.imgFilePrefix + 'lane.png';
-    $scope.batteryimg = $scope.imgFilePrefix + 'battery-icon.png';
     $scope.tilenumberimg = $scope.imgFilePrefix + 'tile-number.png';
+    $scope.showCollisionImg = true;
 
 		MainFactory.getCars()
       .then(
