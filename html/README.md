@@ -12,7 +12,7 @@ npm install
 bower install
 ```
 
-Then run `grunt` for building and `grunt serve` for preview. (TODO: The preview does not yet work as the app currently assumes a base URI of "html"). Note that the `./dist` folder is checked into git for faster deployments of the micro service.
+Then run `grunt` for building and `grunt serve` for preview (which works now). Note that the `./dist` folder is checked into git for faster deployments of the micro service.
 
 ## Testing
 Running `grunt test` will run the unit tests with karma. Unfortunately, there are not tests yet ;-)
@@ -29,6 +29,22 @@ There were some issues with the global install of karma, hence:
 npm install grunt grunt-cli jit-grunt 
 npm install karma-phantomjs-launcher karma-jasmine jasmine-core phantomjs-prebuilt
 npm install grunt-karma karma
+```
+
+## Running without a Camera Image
+
+The `no-camera` branch has been configured to run without a camera image, by including this line in `html/app/scripts/controllers/main.js`:
+```
+$scope.showCollisionImg = false;
+```
+
+If you wish to update the `no-camera` branch to include the latest code from the master branch (while still not using the camera image), use these steps:
+```
+git checkout no-camera
+git merge master
+grunt
+git add dist
+git commit -m "updated no-camera branch"
 ```
 
 ## References
